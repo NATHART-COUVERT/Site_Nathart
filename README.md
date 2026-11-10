@@ -14,7 +14,7 @@ assets/css/style.css          Toute la mise en forme
 assets/js/main.js             Menu mobile + formulaire de contact
 assets/img/                   Images optimisées
 assets/fonts/                 Polices hébergées (voir ci-dessous)
-vercel.json                   URLs propres, en-têtes de sécurité, cache
+`vercel.json`                   URLs propres, en-têtes de sécurité, cache
 sitemap.xml  robots.txt       Référencement
 ```
 
@@ -49,4 +49,4 @@ sitemap.xml  robots.txt       Référencement
 
 ## Mode « site privé » (en cours)
 
-ercel.json envoie l'en-tête `X-Robots-Tag: noindex, nofollow` : Google et les autres moteurs n'indexent pas le site tant qu'il n'est pas terminé. **Au lancement, supprimer cette ligne de ercel.json** (puis pousser sur GitHub), sinon le site restera invisible dans les recherches.
+`vercel.json` envoie l'en-tête `X-Robots-Tag: noindex, nofollow` : Google et les autres moteurs n'indexent pas le site tant qu'il n'est pas terminé. **Au lancement, supprimer cette ligne de `vercel.json`** (puis pousser sur GitHub), sinon le site restera invisible dans les recherches.
