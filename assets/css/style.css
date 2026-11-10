@@ -287,11 +287,58 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 @media (max-width: 700px) { .galerie-presse { grid-template-columns: 1fr; } }
 
 /* ---------- Galerie : vidéos et photos ---------- */
-.galerie-videos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; margin: 1.5rem 0 3rem; }
-@media (min-width: 900px) { .galerie-videos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.media-video { min-width: 0; max-width: 100%; }
+.galerie-videos { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 1.5rem 0 3rem; }
+.media-video { flex: 1 1 28rem; min-width: 0; max-width: min(100%, 46rem); }
 .media-video video { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border: 1px solid rgba(201, 169, 110, 0.4); }
 .media-video figcaption, .galerie-photos figcaption { text-align: center; color: var(--or); font-style: italic; font-size: 1.2rem; margin-top: 0.6rem; }
+/* Carrousel des toiles : une toile à la fois, hauteur identique sur toutes les diapositives */
+.carrousel { --haut-diapo: clamp(18rem, 70vh, 38rem); width: 100%; margin: 1.5rem auto 3rem; }
+.carrousel__cadre { position: relative; background: #000; border: 1px solid rgba(201, 169, 110, 0.4); }
+.carrousel__piste {
+  display: flex; margin: 0; padding: 0; list-style: none;
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory; scroll-behavior: auto; overscroll-behavior-x: contain;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  cursor: grab; touch-action: pan-x pan-y;
+}
+.carrousel__piste::-webkit-scrollbar { display: none; }
+.carrousel__piste.est-glisse { scroll-snap-type: none; cursor: grabbing; user-select: none; }
+.carrousel__diapo {
+  flex: 0 0 100%; min-width: 0; height: var(--haut-diapo);
+  display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); place-items: center; padding: 0.75rem;
+  scroll-snap-align: center; scroll-snap-stop: always;
+}
+.carrousel__diapo img {
+  max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;
+  -webkit-user-drag: none; user-select: none;
+}
+.carrousel__bouton {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 2.9rem; height: 2.9rem; padding: 0; border-radius: 50%; cursor: pointer;
+  background: rgba(7, 8, 8, 0.7); border: 1px solid var(--or); color: var(--or);
+  transition: background 0.3s, color 0.3s;
+}
+.carrousel__bouton:hover, .carrousel__bouton:focus-visible { background: var(--or); color: var(--fond); }
+.carrousel__bouton::before {
+  content: ""; display: block; width: 0.7rem; height: 0.7rem; margin: auto;
+  border-top: 2px solid currentColor; border-right: 2px solid currentColor;
+}
+.carrousel__bouton--prec { left: 0.6rem; }
+.carrousel__bouton--prec::before { transform: translateX(2px) rotate(-135deg); }
+.carrousel__bouton--suiv { right: 0.6rem; }
+.carrousel__bouton--suiv::before { transform: translateX(-2px) rotate(45deg); }
+.carrousel__bouton[hidden] { display: none; }
+.carrousel__legende { text-align: center; color: var(--or); font-style: italic; font-size: 1.35rem; margin: 0.9rem 0 0.2rem; }
+.carrousel__compteur { text-align: center; font-size: 1rem; color: var(--texte-doux); margin: 0; }
+.carrousel:not(.est-pret) .carrousel__bouton { display: none; }
+@media (max-width: 600px) {
+  .carrousel { --haut-diapo: clamp(16rem, 62vh, 30rem); }
+  .carrousel__diapo { padding: 0.4rem; }
+  .carrousel__bouton { width: 2.5rem; height: 2.5rem; }
+  .carrousel__bouton--prec { left: 0.35rem; }
+  .carrousel__bouton--suiv { right: 0.35rem; }
+}
+
 .galerie-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: 1.5rem; margin: 1.5rem 0 3rem; }
 .galerie-photos img { width: 100%; height: auto; border: 1px solid rgba(201, 169, 110, 0.3); transition: transform 0.4s ease; }
 .galerie-photos a:hover img, .galerie-photos a:focus-visible img { transform: scale(1.03); }

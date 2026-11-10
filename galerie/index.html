@@ -78,16 +78,21 @@
             </figure>
           </div>
 
-          <h2 class="titre-section">Photos</h2>
-          <p class="galerie-vide">Les photos de mes toiles arrivent bientôt.</p>
+          <h2 class="titre-section" id="titre-toiles">Mes toiles</h2>
           <!--
-            Pour ajouter une photo : déposer le fichier dans media/photos/, puis remplacer le paragraphe
-            « galerie-vide » ci-dessus par un bloc <div class="galerie-photos"> contenant, pour chaque photo :
-            <figure>
-              <a href="/media/photos/nom-du-fichier.jpg"><img src="/media/photos/nom-du-fichier.jpg" width="1200" height="800" loading="lazy" alt="Description de la toile"></a>
-              <figcaption>Titre de la toile</figcaption>
-            </figure>
+            Carrousel alimenté automatiquement par media/photos/toiles/photos.json (toutes les photos du dossier,
+            affichées dans un ordre aléatoire). Pour ajouter une toile : voir le README (« Photos et vidéos »).
           -->
+          <div class="carrousel" data-carrousel data-source="/media/photos/toiles/photos.json" role="region" aria-roledescription="carrousel" aria-labelledby="titre-toiles">
+            <div class="carrousel__cadre">
+              <ul class="carrousel__piste" tabindex="0" aria-label="Toiles : faire défiler avec le doigt, la souris ou les flèches du clavier"></ul>
+              <button type="button" class="carrousel__bouton carrousel__bouton--prec" aria-label="Toile précédente"></button>
+              <button type="button" class="carrousel__bouton carrousel__bouton--suiv" aria-label="Toile suivante"></button>
+            </div>
+            <p class="carrousel__legende" role="status">Chargement des toiles…</p>
+            <p class="carrousel__compteur" aria-hidden="true"></p>
+            <noscript><p class="galerie-vide">Pour voir les toiles, merci d’activer JavaScript dans votre navigateur.</p></noscript>
+          </div>
         </div>
       </section>
     </main>
@@ -119,5 +124,6 @@
   </footer>
 
   <script src="/assets/js/main.js?v=2" defer></script>
+  <script src="/assets/js/carrousel.js?v=1" defer></script>
 </body>
 </html>

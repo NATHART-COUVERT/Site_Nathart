@@ -53,7 +53,15 @@ sitemap.xml  robots.txt       Référencement
 
 ## Photos et vidéos (dossier `media/`)
 
-- `media/photos/` : photos des toiles (JPEG, 1600 px de large maximum, moins de 500 Ko chacune si possible).
+### Ajouter une toile au carrousel
+1. **Glisser-déposer** les photos (ou leur dossier) sur **`Optimiser-photos.bat`**. L'outil redimensionne (1800 px maximum), compresse, nettoie le nom de fichier, copie dans `media/photos/toiles/` et ajoute le titre dans `titres.json`.
+2. Envoyer sur GitHub (GitHub Desktop : *Commit* puis *Push*). Vercel redéploie et **la photo apparaît toute seule** dans le carrousel de la page Galerie (ordre aléatoire à chaque visite).
+
+- **Titre affiché** : modifiable dans `media/photos/toiles/titres.json` (`"nom-du-fichier.jpg": "Titre de la toile"`). Pour une description détaillée pour les malvoyants : `"nom.jpg": { "titre": "...", "alt": "Description..." }`.
+- **Supprimer une toile** : supprimer le fichier `.jpg` (et sa ligne dans `titres.json`), puis envoyer sur GitHub.
+- **Comment ça marche** : à chaque déploiement, Vercel exécute `scripts/generate-gallery.mjs`, qui lit le dossier et écrit `photos.json` ; le navigateur lit cette liste (`assets/js/carrousel.js`). Si une photo est déposée sans passer par l'outil, elle apparaît quand même, mais non optimisée.
+
+### Vidéos
 - `media/videos/` : vidéos au format **MP4 (H.264 + son AAC)**, 720p, quelques minutes au plus. GitHub refuse les fichiers de plus de 100 Mo : pour des vidéos plus longues, passer par un hébergeur vidéo.
 - Noms de fichiers sans accents ni espaces (`presentation-galerie.mp4`).
-- La page `galerie/index.html` contient un modèle commenté pour ajouter une photo ; une vidéo se copie à partir du bloc `<figure class="media-video">` existant.
+- Une vidéo s'ajoute en copiant le bloc `<figure class="media-video">` de `galerie/index.html`.
