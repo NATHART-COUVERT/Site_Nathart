@@ -46,3 +46,7 @@ sitemap.xml  robots.txt       Référencement
 - **Couleurs et polices** : variables en tête de `assets/css/style.css` (`--or`, `--fond`, …).
 - **En-tête, menu et pied de page** sont répétés dans chaque page : une modification du menu doit être reportée dans tous les fichiers `index.html`.
 - Prévisualiser en local : **double-cliquer sur `Apercu-local.bat`** (Windows, rien à installer) : le site s'ouvre sur `http://localhost:8123/`. Ne pas ouvrir `index.html` directement : les liens sont absolus (`/art/`), le rendu serait cassé hors d'un serveur. Alternatives : extension *Live Server* de VS Code, ou `npx vercel dev`.
+
+## Mode « site privé » (en cours)
+
+ercel.json envoie l'en-tête `X-Robots-Tag: noindex, nofollow` : Google et les autres moteurs n'indexent pas le site tant qu'il n'est pas terminé. **Au lancement, supprimer cette ligne de ercel.json** (puis pousser sur GitHub), sinon le site restera invisible dans les recherches.
