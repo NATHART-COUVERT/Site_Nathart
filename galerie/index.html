@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galerie : vidéos et photos | Nathart</title>
+  <meta name="description" content="Galerie de Nathart : vidéos de présentation et photos de ses toiles.">
+  <link rel="canonical" href="https://nathart.vercel.app/galerie/">
+  <meta name="theme-color" content="#070808">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Nathart">
+  <meta property="og:title" content="Galerie : vidéos et photos | Nathart">
+  <meta property="og:description" content="Galerie de Nathart : vidéos de présentation et photos de ses toiles.">
+  <meta property="og:url" content="https://nathart.vercel.app/galerie/">
+  <meta property="og:image" content="https://nathart.vercel.app/assets/img/og-image.jpg">
+  <meta property="og:image:alt" content="Nathart — artiste peintre autodidacte">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icone-192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/pinyon-script-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/cormorant-garamond-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <header class="entete">
+    <div class="entete__haut">
+      <a class="entete__logo" href="/">
+        <img src="/assets/img/logo-nathart.jpg" width="197" height="131" alt="Nathart — illustration de l’artiste entourée de ses symboles&nbsp;: ADN, lotus, yin-yang, palette et bougie">
+      </a>
+      <div>
+        <p class="entete__titre">Nathart</p>
+        <p class="entete__metier">Artiste - Auteure</p>
+      </div>
+    </div>
+    <p class="entete__devise">«&nbsp;Peintresse&nbsp;» autodidacte</p>
+  </header>
+
+  <nav class="nav" aria-label="Navigation principale">
+    <button class="nav__bouton" type="button" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+    <ul class="nav__liste" id="menu-principal">
+      <li><a href="/">Accueil</a></li>
+      <li class="nav__item--sous">
+        <div class="nav__parent">
+          <a href="/#univers">Mes Univers</a>
+          <button class="nav__sous-bouton" type="button" aria-expanded="false" aria-controls="sous-menu-univers"><span class="visuellement-cache">Afficher les cinq univers</span></button>
+        </div>
+        <ul class="nav__sous" id="sous-menu-univers">
+          <li><a href="/art/">Art</a></li>
+          <li><a href="/neurosciences/">Neurosciences</a></li>
+          <li><a href="/creation-symboles/">Création &amp; Symboles</a></li>
+          <li><a href="/spiritualite-sciences/">Spiritualité &amp; Sciences</a></li>
+          <li><a href="/art-transpersonnel/">Art transpersonnel</a></li>
+        </ul>
+      </li>
+      <li><a href="/epigenetique/">Épigénétique</a></li>
+      <li><a href="/galerie/" aria-current="page">Galerie</a></li>
+      <li><a href="/evenements/">Événements</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </nav>
+    <main id="contenu">
+      <section class="section section--sombre" aria-labelledby="titre-page">
+        <div class="conteneur">
+          <h1 id="titre-page" class="titre-page">Galerie</h1>
+
+          <h2 class="titre-section">Vidéos</h2>
+          <div class="galerie-videos">
+            <figure class="media-video">
+              <video controls preload="metadata" playsinline width="1280" height="720">
+                <source src="/media/videos/presentation-galerie.mp4#t=0.5" type="video/mp4">
+                <p>Votre navigateur ne peut pas lire cette vidéo. <a href="/media/videos/presentation-galerie.mp4">Télécharger la vidéo (MP4)</a>.</p>
+              </video>
+              <figcaption>Présentation de la galerie</figcaption>
+            </figure>
+          </div>
+
+          <h2 class="titre-section">Photos</h2>
+          <p class="galerie-vide">Les photos de mes toiles arrivent bientôt.</p>
+          <!--
+            Pour ajouter une photo : déposer le fichier dans media/photos/, puis remplacer le paragraphe
+            « galerie-vide » ci-dessus par un bloc <div class="galerie-photos"> contenant, pour chaque photo :
+            <figure>
+              <a href="/media/photos/nom-du-fichier.jpg"><img src="/media/photos/nom-du-fichier.jpg" width="1200" height="800" loading="lazy" alt="Description de la toile"></a>
+              <figcaption>Titre de la toile</figcaption>
+            </figure>
+          -->
+        </div>
+      </section>
+    </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <div>
+        <p class="pied__titre">Nathart</p>
+        <a class="pied__logo" href="/"><img src="/assets/img/logo-nathart.jpg" width="197" height="131" loading="lazy" alt="Retour à l’accueil — logo de Nathart"></a>
+      </div>
+      <div>
+        <p class="pied__titre">Me contacter</p>
+        <ul class="pied__reseaux">
+          <li><a href="/contact/" aria-label="Écrire à Nathart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a></li>
+          <li><a href="https://www.instagram.com/nathalie.couvert/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (s’ouvre dans un nouvel onglet)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a></li>
+          <li><a href="https://www.facebook.com/nathalie.couvert/" target="_blank" rel="noopener noreferrer" aria-label="Facebook (s’ouvre dans un nouvel onglet)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h-2.5A4.5 4.5 0 0 0 8 7.5V10H5v4h3v7h4v-7h3l1-4h-4V7.5c0-.3.2-.5.5-.5H15z"/></svg></a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="pied__titre">Informations</p>
+        <p>N° Siret Artiste Auteur&nbsp;: 89317345000014</p>
+        <p>© 2026 Nathart. Tous droits réservés.</p>
+        <ul class="pied__legal">
+          <li><a href="/mentions-legales/">Mentions légales</a></li>
+          <li><a href="/confidentialite/">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

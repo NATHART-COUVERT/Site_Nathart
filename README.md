@@ -50,3 +50,10 @@ sitemap.xml  robots.txt       Référencement
 ## Mode « site privé » (en cours)
 
 `vercel.json` envoie l'en-tête `X-Robots-Tag: noindex, nofollow` : Google et les autres moteurs n'indexent pas le site tant qu'il n'est pas terminé. **Au lancement, supprimer cette ligne de `vercel.json`** (puis pousser sur GitHub), sinon le site restera invisible dans les recherches.
+
+## Photos et vidéos (dossier `media/`)
+
+- `media/photos/` : photos des toiles (JPEG, 1600 px de large maximum, moins de 500 Ko chacune si possible).
+- `media/videos/` : vidéos au format **MP4 (H.264 + son AAC)**, 720p, quelques minutes au plus. GitHub refuse les fichiers de plus de 100 Mo : pour des vidéos plus longues, passer par un hébergeur vidéo.
+- Noms de fichiers sans accents ni espaces (`presentation-galerie.mp4`).
+- La page `galerie/index.html` contient un modèle commenté pour ajouter une photo ; une vidéo se copie à partir du bloc `<figure class="media-video">` existant.
