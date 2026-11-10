@@ -1,0 +1,342 @@
+/* ==========================================================================
+   Nathart — feuille de style unique
+   Charte reprise du site Divi : fond #070808, or #c9a96e,
+   titres Pinyon Script, textes Cormorant Garamond.
+   ========================================================================== */
+
+/* ---------- Polices (hébergées sur le site : pas de requête vers Google) ---------- */
+@font-face {
+  font-family: "Pinyon Script";
+  src: url("/assets/fonts/pinyon-script-400.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/assets/fonts/cormorant-garamond-500.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/assets/fonts/cormorant-garamond-500-italic.woff2") format("woff2");
+  font-weight: 500; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/assets/fonts/cormorant-garamond-700.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---------- Variables ---------- */
+:root {
+  --fond: #070808;
+  --fond-noir: #000;
+  --or: #c9a96e;
+  --or-clair: #d4b984;
+  --texte: #fff;
+  --texte-doux: #e8e0d5;
+  --police-titre: "Pinyon Script", "Snell Roundhand", cursive;
+  --police-texte: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --largeur: 62rem;      /* conteneur général */
+  --largeur-texte: 46rem; /* colonne de lecture */
+  --hauteur-nav: 4.25rem;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police-texte);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.55;
+}
+img { max-width: 100%; height: auto; display: block; }
+figure { margin: 0; }
+a { color: var(--or); text-underline-offset: 0.2em; }
+a:hover { color: var(--texte); }
+:focus-visible { outline: 3px solid var(--or-clair); outline-offset: 3px; }
+p { margin: 0 0 1.1em; }
+h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
+[id] { scroll-margin-top: 5rem; }
+
+.visuellement-cache {
+  position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.lien-evitement {
+  position: absolute; left: 1rem; top: -4rem; z-index: 1000;
+  background: var(--or); color: var(--fond); padding: 0.6rem 1rem; text-decoration: none;
+}
+.lien-evitement:focus { top: 1rem; }
+
+.conteneur { width: min(100% - 2rem, var(--largeur)); margin-inline: auto; }
+.colonne { width: min(100% - 2rem, var(--largeur-texte)); margin-inline: auto; text-align: center; }
+.gauche { text-align: left; }
+
+/* ---------- En-tête ---------- */
+.entete { background: var(--fond); }
+.entete__haut {
+  width: min(100% - 2rem, var(--largeur));
+  margin-inline: auto;
+  display: flex; align-items: center; justify-content: center; gap: 2rem;
+  padding: 1rem 0 0.25rem;
+  text-align: center;
+}
+.entete__logo img { width: 197px; border-radius: 30px; }
+.entete__titre {
+  font-family: var(--police-titre); color: var(--or);
+  font-size: clamp(2.6rem, 6vw, 3.4rem); line-height: 1.1; margin: 0; text-decoration: none; display: block;
+}
+.entete__titre:hover { color: var(--or); }
+.entete__metier { font-size: 1.45rem; margin: 0; }
+.entete__devise { text-align: center; margin: 0; padding: 0.25rem 1rem 0.5rem; font-size: 1.4rem; }
+
+/* ---------- Navigation (barre collante) ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--fond);
+  border-bottom: 1px solid rgba(201, 169, 110, 0.25);
+}
+.nav__bouton {
+  display: none; margin: 0.4rem auto; padding: 0.5rem 1rem;
+  background: transparent; color: var(--or); border: 2px solid var(--or);
+  font: 700 0.95rem var(--police-texte); letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer;
+}
+.nav__liste { list-style: none; margin: 0; padding: 0.3rem 1rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0 0.4rem; }
+.nav__liste > li { position: relative; }
+.nav a, .nav__sous-bouton {
+  display: block; padding: 0.55rem 1vw; color: var(--or); text-decoration: none;
+  font: 700 0.95rem/2 var(--police-texte); letter-spacing: 0.3em; text-transform: uppercase;
+}
+.nav a:hover, .nav a[aria-current="page"] { color: var(--texte); }
+.nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 0.5em; text-decoration-thickness: 1px; }
+.nav__parent { display: flex; align-items: center; }
+.nav__sous-bouton { background: none; border: 0; padding-inline: 0.3rem; cursor: pointer; letter-spacing: 0; }
+.nav__sous-bouton:hover { color: var(--texte); }
+.nav__sous-bouton::before {
+  content: ""; display: inline-block; width: 0.5rem; height: 0.5rem;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translate(-2px, -2px);
+}
+.nav__sous {
+  list-style: none; margin: 0; padding: 0; display: none;
+  position: absolute; left: 50%; top: 100%; transform: translateX(-50%); width: 17rem;
+  background: var(--or);
+}
+.nav__sous a { color: var(--fond); letter-spacing: 0.1em; font-size: 0.95rem; line-height: 1.4; padding: 0.55rem 1.25rem; }
+.nav__sous a:hover { color: var(--texte); background: var(--fond); }
+.nav__sous a[aria-current="page"] { color: var(--fond); text-decoration: underline; }
+.nav__item--sous:hover > .nav__sous,
+.nav__item--sous:focus-within > .nav__sous,
+.nav__item--sous.est-ouvert > .nav__sous { display: block; }
+
+@media (max-width: 980px) {
+  .entete__haut { flex-direction: column; gap: 0.5rem; }
+  .nav__bouton { display: block; }
+  .nav__liste { display: none; flex-direction: column; align-items: stretch; padding-bottom: 1rem; }
+  .nav.est-ouvert .nav__liste { display: flex; }
+  .nav a, .nav__sous-bouton { padding: 0.55rem 1rem; text-align: center; }
+  .nav__parent { justify-content: center; }
+  .nav__sous { position: static; transform: none; width: auto; }
+  .nav__item--sous:hover > .nav__sous { display: none; }
+  .nav__item--sous.est-ouvert > .nav__sous { display: block; }
+}
+
+/* ---------- Mise en page : sections ---------- */
+.section { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+.section--sombre { background: var(--fond); }
+.section--degrade { background: linear-gradient(var(--fond-noir), var(--fond)); }
+
+/* Fond d'accueil : photo plein écran + voile noir à 50 % (parallaxe sur grand écran) */
+.accueil-fond {
+  position: relative;
+  background-color: var(--fond); background-position: center; background-size: cover; background-repeat: no-repeat;
+}
+.accueil-fond::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); }
+.accueil-fond > * { position: relative; }
+@media (max-width: 800px) { .accueil-fond { background-image: url("/assets/img/fond-accueil-mobile.jpg"); } }
+@media (min-width: 801px) { .accueil-fond { background-image: url("/assets/img/fond-accueil.jpg"); } }
+@media (min-width: 1025px) and (hover: hover) { .accueil-fond { background-attachment: fixed; } }
+
+/* Pages « univers » : visuel de l'univers fondu dans le noir (mode soft-light de Divi) */
+.fond-univers {
+  background-color: var(--fond);
+  background-repeat: no-repeat; background-position: center; background-size: cover;
+  background-blend-mode: soft-light;
+}
+.fond-art { background-image: url("/assets/img/univers-art.jpg"); }
+.fond-neurosciences { background-image: url("/assets/img/univers-neurosciences.jpg"); }
+.fond-creation { background-image: url("/assets/img/univers-creation.jpg"); }
+.fond-spiritualite { background-image: url("/assets/img/univers-spiritualite.jpg"); }
+.fond-transpersonnel { background-image: url("/assets/img/univers-transpersonnel.jpg"); }
+.fond-arbre { background-image: url("/assets/img/arbre-de-vie.jpg"); }
+/* Épigénétique (accueil) : arbre de vie sous un voile noir à 90 % */
+.fond-arbre-voile {
+  background: linear-gradient(rgba(7, 8, 8, 0.9), rgba(7, 8, 8, 0.9)), url("/assets/img/arbre-de-vie.jpg") center / cover no-repeat;
+}
+
+/* ---------- Typographie des contenus ---------- */
+.titre-page {
+  font-family: var(--police-titre); color: var(--or);
+  font-size: clamp(3.2rem, 11vw, 4.5rem); line-height: 1.5; text-align: center;
+}
+.titre-hero {
+  font-family: var(--police-titre); color: var(--or); text-align: center;
+  font-size: clamp(4.5rem, 16vw, 6.25rem); line-height: 1.1; font-style: italic;
+}
+.titre-apropos { font-family: var(--police-titre); color: var(--or); font-size: clamp(2.6rem, 8vw, 3.2rem); font-style: italic; text-align: center; }
+.titre-section { color: var(--or); font-size: clamp(2rem, 5vw, 2.25rem); text-align: center; margin: 2.5rem 0 1rem; }
+.titre-sous { color: var(--or); font-size: clamp(1.6rem, 4vw, 1.75rem); text-align: center; margin: 2rem 0 0.75rem; }
+.surtitre { color: var(--or); font-size: clamp(1.6rem, 4vw, 1.75rem); text-align: center; margin: 2.5rem 0 0; }
+.sous-titre-italique { font-style: italic; text-align: center; font-size: 1.4rem; margin: 0 0 0.8rem; }
+.citation {
+  color: var(--or); font-style: italic; text-align: center;
+  font-size: clamp(1.4rem, 3.5vw, 1.5rem); margin: 1.5rem 0;
+}
+.citation--grande { font-size: clamp(1.6rem, 4vw, 1.8rem); }
+.accroche { text-align: center; font-size: 1.4rem; margin: 0.25rem 0 1.5rem; }
+.chapeau { font-size: clamp(1.3rem, 3.2vw, 1.55rem); line-height: 1.3; text-align: center; }
+.lignes-couleurs { color: var(--or); font-style: italic; font-size: clamp(1.25rem, 3vw, 1.6rem); text-align: center; line-height: 1.6; }
+.je-suis { color: var(--or); font-size: clamp(1.3rem, 3vw, 1.6rem); text-align: center; margin: 0 0 0.4rem; }
+.je-suis em { font-style: italic; }
+.hero-phrase { font-size: clamp(1.7rem, 4.5vw, 2.2rem); font-style: italic; text-align: center; }
+.hero-question { color: var(--or); font-size: clamp(2rem, 6vw, 2.8rem); font-style: italic; text-align: center; line-height: 1.1; margin: 1.25rem 0; }
+.hero-texte { font-size: clamp(1.3rem, 3.4vw, 1.55rem); line-height: 1.35; text-align: center; margin-bottom: 0.9rem; }
+.hero-devise { color: var(--or); font-size: clamp(1.5rem, 4vw, 1.8rem); font-style: italic; text-align: center; margin-top: 1.5rem; }
+
+.prose p { margin-bottom: 1em; }
+.prose strong { font-weight: 700; }
+.prose ol { text-align: left; display: inline-block; margin: 0 0 1em; padding-left: 1.4rem; }
+.prose .bloc-liste { text-align: center; }
+.apropos-texte { font-size: clamp(1.3rem, 3.4vw, 1.55rem); line-height: 1.4; }
+
+/* ---------- Références (déroulant) ---------- */
+.reference {
+  width: min(100%, 40rem); margin: 1.5rem auto 0; border: 2px solid var(--or);
+  color: var(--fond); text-align: left;
+}
+.reference summary {
+  cursor: pointer; padding: 0.65rem 1rem; background: var(--or); color: var(--fond);
+  font-weight: 700; font-size: 1rem; list-style: none;
+}
+.reference summary::-webkit-details-marker { display: none; }
+.reference summary::after { content: "+"; float: right; font-size: 1.3rem; line-height: 1; }
+.reference[open] summary { background: var(--or-clair); }
+.reference[open] summary::after { content: "−"; }
+.reference[open] { background: var(--or-clair); }
+.reference p { margin: 0; padding: 0.25rem 1rem 1rem; font-size: 1rem; }
+
+/* ---------- Cartes « Mes Cinq Univers » ---------- */
+.cartes { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem 2rem; list-style: none; padding: 0; margin: 2rem 0 0; }
+.carte { position: relative; width: min(100%, 17rem); text-align: center; }
+.carte img { margin: 0 auto 0.75rem; transition: transform 0.4s ease; }
+.carte:hover img { transform: scale(1.04); }
+.carte h3 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+.carte h3 a { color: var(--or); text-decoration: none; }
+.carte h3 a::after { content: ""; position: absolute; inset: 0; }
+.carte p { font-size: 1rem; margin: 0; }
+.carte:focus-within { outline: 3px solid var(--or-clair); outline-offset: 6px; }
+.carte a:focus-visible { outline: none; }
+
+/* ---------- Arbre aux feuilles animées ---------- */
+.arbre { position: relative; width: 100%; max-width: 800px; margin: 1.5rem auto 0; }
+.arbre__fond { display: block; width: 100%; height: auto; mix-blend-mode: screen; }
+.arbre__feuilles { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.feuille { position: absolute; display: block; pointer-events: auto; text-decoration: none; }
+.feuille img { width: 100%; height: auto; filter: drop-shadow(0 0 6px rgba(201, 169, 110, 0.25)); transition: filter 0.4s ease; }
+.feuille-1 { width: 16%;  top: 18%; left: 34%; opacity: 1; }
+.feuille-2 { width: 12.5%; top: 30%; left: 20%; opacity: 0.92; }
+.feuille-3 { width: 9.4%;  top: 44%; left: 10%; opacity: 0.72; }
+.feuille-4 { width: 6.9%;  top: 58%; left: 17%; opacity: 0.5; }
+.feuille-5 { width: 4.8%;  top: 68%; left: 6%;  opacity: 0.35; }
+.feuille-1 img { animation: chute1 6s ease-in-out infinite; }
+.feuille-2 img { animation: chute2 7.5s ease-in-out 0.4s infinite; }
+.feuille-3 img { animation: chute3 8.5s ease-in-out 1.2s infinite; filter: blur(0.4px) drop-shadow(0 0 6px rgba(201, 169, 110, 0.25)); }
+.feuille-4 img { animation: chute4 9.5s ease-in-out 0.7s infinite; filter: blur(1px) drop-shadow(0 0 6px rgba(201, 169, 110, 0.25)); }
+.feuille-5 img { animation: chute5 10.5s ease-in-out 2s infinite; filter: blur(1.6px) drop-shadow(0 0 6px rgba(201, 169, 110, 0.25)); }
+@keyframes chute1 { 0%, 100% { transform: translate(0, 0) rotate(-12deg); } 50% { transform: translate(10px, 6px) rotate(-2deg); } }
+@keyframes chute2 { 0%, 100% { transform: translate(0, 0) rotate(18deg); }  50% { transform: translate(14px, 8px) rotate(30deg); } }
+@keyframes chute3 { 0%, 100% { transform: translate(0, 0) rotate(-22deg); } 50% { transform: translate(18px, 10px) rotate(-10deg); } }
+@keyframes chute4 { 0%, 100% { transform: translate(0, 0) rotate(30deg); }  50% { transform: translate(20px, 12px) rotate(44deg); } }
+@keyframes chute5 { 0%, 100% { transform: translate(0, 0) rotate(-15deg); } 50% { transform: translate(22px, 14px) rotate(-1deg); } }
+.feuille-info {
+  position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%) translateY(6px);
+  white-space: nowrap; background: rgba(7, 8, 8, 0.92); border: 1px solid rgba(201, 169, 110, 0.35);
+  color: var(--texte-doux); font-size: 0.95rem; line-height: 1.3; padding: 0.5rem 1rem; text-align: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.feuille-info em { color: var(--or); }
+.feuille:hover img, .feuille:focus-visible img { filter: drop-shadow(0 0 14px rgba(201, 169, 110, 0.75)) brightness(1.15); animation-play-state: paused; }
+.feuille:hover .feuille-info, .feuille:focus-visible .feuille-info { opacity: 1; transform: translateX(-50%) translateY(0); }
+.feuille:focus-visible { outline-offset: 4px; }
+/* Liste de liens sous l'arbre : accès clavier / tactile */
+.arbre-liens { list-style: none; margin: 1.5rem auto 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.5rem; font-size: 1.1rem; }
+@media (max-width: 600px) { .feuille-info { display: none; } }
+
+/* ---------- Presse / événements ---------- */
+.galerie-presse { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0 2.5rem; }
+.galerie-presse a { display: block; }
+.galerie-presse img { width: 100%; border: 1px solid rgba(201, 169, 110, 0.3); }
+@media (max-width: 700px) { .galerie-presse { grid-template-columns: 1fr; } }
+
+/* ---------- Formulaire de contact ---------- */
+.formulaire { width: min(100%, 40rem); margin: 2rem auto 0; display: grid; gap: 1.25rem; }
+.formulaire__rangee { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media (max-width: 640px) { .formulaire__rangee { grid-template-columns: 1fr; } }
+.formulaire label { display: block; color: var(--or); margin-bottom: 0.3rem; font-size: 1.15rem; }
+.formulaire input[type="text"], .formulaire input[type="email"], .formulaire textarea {
+  width: 100%; background: var(--or); color: #000; border: 2px solid var(--or); border-radius: 0;
+  font: 500 1.15rem var(--police-texte); padding: 0.75rem 0.9rem;
+}
+.formulaire textarea { min-height: 11rem; resize: vertical; }
+.formulaire ::placeholder { color: #3a3a3a; opacity: 1; }
+.formulaire input:focus-visible, .formulaire textarea:focus-visible { outline: 3px solid var(--texte); outline-offset: 2px; }
+.formulaire__consentement { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 1rem; }
+.formulaire__consentement input { margin-top: 0.35rem; width: 1.1rem; height: 1.1rem; accent-color: var(--or); flex: none; }
+.formulaire__consentement label { color: var(--texte); margin: 0; font-size: 1rem; }
+.piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.bouton {
+  justify-self: center; background: transparent; color: var(--or); border: 2px solid var(--or);
+  padding: 0.7rem 2.5rem; font: 700 1rem var(--police-texte); letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+.bouton:hover, .bouton:focus-visible { background: var(--or); color: var(--fond); }
+.bouton[disabled] { opacity: 0.6; cursor: wait; }
+.formulaire__etat { text-align: center; min-height: 1.6em; margin: 0; }
+.formulaire__etat--ok { color: var(--or-clair); }
+.formulaire__etat--erreur { color: #ffb4a8; }
+
+/* ---------- Pages légales ---------- */
+.legal h2 { color: var(--or); font-size: 1.9rem; margin: 2.5rem 0 0.75rem; text-align: left; }
+.legal h3 { color: var(--or); font-size: 1.4rem; margin: 1.5rem 0 0.5rem; }
+.legal ul { padding-left: 1.3rem; }
+.a-completer { background: var(--or); color: var(--fond); padding: 0 0.3em; font-weight: 700; }
+.page-404 { text-align: center; padding: 4rem 0; }
+
+/* ---------- Pied de page ---------- */
+.pied { background: var(--fond); border-top: 1px solid rgba(201, 169, 110, 0.25); padding: 2.5rem 0 1.5rem; }
+.pied__grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: start; text-align: center; }
+.pied__titre { font-family: var(--police-titre); color: var(--or); font-size: 1.9rem; margin: 0 0 0.6rem; line-height: 1.2; }
+.pied__logo img { width: 6.5rem; margin: 0.5rem auto 0; border-radius: 6px; }
+.pied__reseaux { list-style: none; display: flex; justify-content: center; gap: 1.5rem; padding: 0; margin: 0; }
+.pied__reseaux a { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; border: 1px solid rgba(201, 169, 110, 0.5); color: var(--or); transition: background 0.3s, color 0.3s; }
+.pied__reseaux a:hover, .pied__reseaux a:focus-visible { background: var(--or); color: var(--fond); }
+.pied__reseaux svg { width: 1.5rem; height: 1.5rem; }
+.pied p { font-size: 1rem; margin: 0 0 0.5rem; }
+.pied__legal { list-style: none; margin: 0.5rem 0 0; padding: 0; font-size: 1rem; }
+.pied__legal a { color: var(--texte); }
+.pied__legal a:hover { color: var(--or); }
+@media (max-width: 800px) { .pied__grille { grid-template-columns: 1fr; } }
+
+/* ---------- Mouvement réduit : on coupe les animations ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,21 @@
+# Système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Éditeurs
+.vscode/
+.idea/
+
+# Vercel (lien local avec le projet)
+.vercel/
+
+# Ne JAMAIS publier l'ancien site WordPress/Divi ni sa base de données
+*.sql
+wp-config.php
+wp-content/
+app/
+conf/
+logs/
+.env
+.env.*
