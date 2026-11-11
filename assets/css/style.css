@@ -312,6 +312,35 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
   max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;
   -webkit-user-drag: none; user-select: none;
 }
+/* Fiche de l'œuvre : au survol (souris), au clavier, ou en touchant le bouton « i » (tactile) */
+.carrousel__diapo { position: relative; }
+.carrousel__fiche {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+  padding: 2.4rem 1.2rem 1rem; text-align: center; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(7, 8, 8, 0), rgba(7, 8, 8, 0.92) 38%);
+  opacity: 0; transform: translateY(0.6rem); transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.carrousel__fiche-titre { margin: 0 0 0.4rem; color: var(--or); font-size: 1.3rem; font-style: italic; }
+.carrousel__fiche dl { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem 1.6rem; }
+.carrousel__fiche dl div { display: flex; gap: 0.4rem; align-items: baseline; }
+.carrousel__fiche dt { color: var(--or); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.12em; }
+.carrousel__fiche dd { margin: 0; color: var(--texte); font-size: 1.1rem; }
+.carrousel__diapo.est-info .carrousel__fiche, .carrousel__info-bouton:focus-visible + .carrousel__fiche { opacity: 1; transform: none; }
+@media (hover: hover) { .carrousel__diapo:hover .carrousel__fiche { opacity: 1; transform: none; } }
+.carrousel__info-bouton {
+  position: absolute; top: 0.6rem; right: 0.6rem; z-index: 2;
+  width: 2.5rem; height: 2.5rem; padding: 0; border-radius: 50%; cursor: pointer;
+  background: rgba(7, 8, 8, 0.7); border: 1px solid var(--or); color: var(--or);
+  font: italic 700 1.3rem/1 var(--police-texte); transition: background 0.3s, color 0.3s;
+}
+.carrousel__info-bouton::before { content: "i"; }
+.carrousel__info-bouton:hover, .carrousel__info-bouton:focus-visible, .carrousel__diapo.est-info .carrousel__info-bouton { background: var(--or); color: var(--fond); }
+@media (max-width: 600px) {
+  .carrousel__fiche { padding: 2rem 0.8rem 0.8rem; }
+  .carrousel__fiche dl { flex-direction: column; align-items: center; gap: 0.1rem; }
+  .carrousel__info-bouton { top: 0.4rem; right: 0.4rem; width: 2.3rem; height: 2.3rem; }
+}
+
 .carrousel__bouton {
   position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
   width: 2.9rem; height: 2.9rem; padding: 0; border-radius: 50%; cursor: pointer;

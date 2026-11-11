@@ -6,7 +6,11 @@
 #   - nom de fichier propre (sans accents ni espaces)
 #   - copie dans media/photos/toiles/
 #   - titre ajoute a media/photos/toiles/titres.json (modifiable ensuite a la main)
+#   - fiche vide ajoutee a media/photos/toiles/details.json (dimensions, matiere, peinture, prix)
 # La liste photos.json est regeneree. Il ne reste qu'a envoyer le dossier sur GitHub.
+#
+# Astuce : "Rose (ouverte).jpg" et "Rose (fermee).jpg" -> meme titre "Rose", vues "ouverte" et "fermee".
+# Les photos de meme titre sont toujours affichees l'une apres l'autre dans le carrousel.
 #
 # Fichier volontairement en ASCII : PowerShell 5.1 lit mal l'UTF-8 sans BOM.
 
@@ -20,6 +24,7 @@ $repo    = Split-Path -Parent $PSScriptRoot
 $dest    = Join-Path $repo 'media\photos\toiles'
 $utf8    = New-Object Text.UTF8Encoding($false)
 $exts    = '.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff', '.gif'
+$champs  = 'dimensions', 'matiere', 'peinture', 'prix'
 
 if (-not $Chemins -or $Chemins.Count -eq 0) {
   Write-Host 'Glisser-deposer des photos ou un dossier sur Optimiser-photos.bat'
@@ -43,20 +48,26 @@ function Get-Titre([string]$base) {
   if ($t.Length -gt 0) { $t = $t.Substring(0, 1).ToUpper() + $t.Substring(1) }
   $t
 }
+# "Rose sur bois (ouverte)" -> titre "Rose sur bois", vue "ouverte"
+function Split-Titre([string]$t) {
+  $m = [regex]::Match($t, '^(.*?)\s*\(([^)]+)\)\s*$')
+  if ($m.Success) { return @($m.Groups[1].Value.Trim(), $m.Groups[2].Value.Trim()) }
+  return @($t, '')
+}
 function Esc([string]$s) { $s.Replace('\', '\\').Replace('"', '\"') }
+function Read-Json([string]$path) { if (Test-Path $path) { [IO.File]::ReadAllText($path, [Text.Encoding]::UTF8) | ConvertFrom-Json } else { $null } }
 
-# --- titres existants
+# --- titres existants (on ne garde que ceux dont le fichier existe encore)
 $titresPath = Join-Path $dest 'titres.json'
 $titres = [ordered]@{}
-if (Test-Path $titresPath) {
-  $j = [IO.File]::ReadAllText($titresPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
-  foreach ($p in $j.PSObject.Properties) { if ($p.Value -is [string]) { $titres[$p.Name] = $p.Value } }
-}
+$j = Read-Json $titresPath
+if ($j) { foreach ($p in $j.PSObject.Properties) { if (($p.Value -is [string]) -and (Test-Path (Join-Path $dest $p.Name))) { $titres[$p.Name] = $p.Value } } }
 
 # --- liste des fichiers a traiter
 $fichiers = @()
+$dossierSource = $false
 foreach ($c in $Chemins) {
-  if (Test-Path -LiteralPath $c -PathType Container) { $fichiers += Get-ChildItem -LiteralPath $c -File -Recurse }
+  if (Test-Path -LiteralPath $c -PathType Container) { $dossierSource = $true; $fichiers += Get-ChildItem -LiteralPath $c -File -Recurse }
   elseif (Test-Path -LiteralPath $c -PathType Leaf) { $fichiers += Get-Item -LiteralPath $c }
 }
 $fichiers = $fichiers | Where-Object { $exts -contains $_.Extension.ToLower() }
@@ -66,6 +77,7 @@ $codec = [Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object { $
 $ep = New-Object Drawing.Imaging.EncoderParameters(1)
 $ep.Param[0] = New-Object Drawing.Imaging.EncoderParameter([Drawing.Imaging.Encoder]::Quality, [long]$Qualite)
 
+$traites = @()
 foreach ($f in $fichiers) {
   $img = [Drawing.Image]::FromFile($f.FullName)
   try {
@@ -83,9 +95,11 @@ foreach ($f in $fichiers) {
     $g.DrawImage($img, 0, 0, $w, $h); $g.Dispose()
     $nom = (Get-Slug ([IO.Path]::GetFileNameWithoutExtension($f.Name))) + '.jpg'
     $bmp.Save((Join-Path $dest $nom), $codec, $ep); $bmp.Dispose()
+    $traites += $nom
     if (-not $titres.Contains($nom)) { $titres[$nom] = Get-Titre ([IO.Path]::GetFileNameWithoutExtension($f.Name)) }
     $ko = [int]((Get-Item (Join-Path $dest $nom)).Length / 1KB)
-    Write-Host ("{0,-45} -> {1}  ({2}x{3}, {4} Ko, source {5} Ko)" -f $f.Name, $nom, $w, $h, $ko, [int]($f.Length / 1KB))
+    $alerte = ''; if ([Math]::Max($img.Width, $img.Height) -lt 900) { $alerte = '  <-- image petite : prevoir un fichier plus grand' }
+    Write-Host ("{0,-45} -> {1}  ({2}x{3}, {4} Ko, source {5} Ko){6}" -f $f.Name, $nom, $w, $h, $ko, [int]($f.Length / 1KB), $alerte)
   } finally { $img.Dispose() }
 }
 
@@ -93,12 +107,38 @@ foreach ($f in $fichiers) {
 $lignes = foreach ($k in $titres.Keys) { '  "' + (Esc $k) + '": "' + (Esc $titres[$k]) + '"' }
 [IO.File]::WriteAllText($titresPath, "{`n" + ($lignes -join ",`n") + "`n}`n", $utf8)
 
+# --- details.json : une fiche par oeuvre (cle = titre sans la vue). Valeurs existantes conservees.
+$detailsPath = Join-Path $dest 'details.json'
+$details = [ordered]@{}
+$dj = Read-Json $detailsPath
+if ($dj) { foreach ($p in $dj.PSObject.Properties) { $fiche = [ordered]@{}; foreach ($c in $champs) { $v = $p.Value.$c; if ($null -eq $v) { $v = '' }; $fiche[$c] = [string]$v }; $details[$p.Name] = $fiche } }
+$titresOeuvres = @($titres.Values | ForEach-Object { (Split-Titre $_)[0] } | Select-Object -Unique)
+foreach ($t in $titresOeuvres) { if (-not $details.Contains($t)) { $fiche = [ordered]@{}; foreach ($c in $champs) { $fiche[$c] = '' }; $details[$t] = $fiche } }
+$blocs = foreach ($k in $details.Keys) {
+  $l = foreach ($c in $champs) { '    "' + $c + '": "' + (Esc $details[$k][$c]) + '"' }
+  '  "' + (Esc $k) + '": {' + "`n" + ($l -join ",`n") + "`n  }"
+}
+[IO.File]::WriteAllText($detailsPath, "{`n" + ($blocs -join ",`n") + "`n}`n", $utf8)
+
 # --- photos.json (meme format que scripts/generate-gallery.mjs, execute par Vercel)
 $items = foreach ($p in (Get-ChildItem $dest -File | Where-Object { @('.jpg', '.jpeg', '.png', '.webp') -contains $_.Extension.ToLower() } | Sort-Object Name)) {
   $t = $titres[$p.Name]; if (-not $t) { $t = Get-Titre ([IO.Path]::GetFileNameWithoutExtension($p.Name)) }
-  '    { "src": "/media/photos/toiles/' + $p.Name + '", "titre": "' + (Esc $t) + '" }'
+  $parts = Split-Titre $t
+  $champsJson = @(('"src": "/media/photos/toiles/' + $p.Name + '"'), ('"titre": "' + (Esc $parts[0]) + '"'))
+  if ($parts[1]) { $champsJson += '"vue": "' + (Esc $parts[1]) + '"' }
+  if ($details.Contains($parts[0])) { foreach ($c in $champs) { $v = $details[$parts[0]][$c]; if ($v) { $champsJson += '"' + $c + '": "' + (Esc $v) + '"' } } }
+  '    { ' + ($champsJson -join ', ') + ' }'
 }
 [IO.File]::WriteAllText((Join-Path $dest 'photos.json'), "{`n  `"generated`": `"local`",`n  `"photos`": [`n" + ($items -join ",`n") + "`n  ]`n}`n", $utf8)
+
 Write-Host ''
 Write-Host ("Termine : {0} photo(s) traitee(s). Galerie mise a jour ({1} photos au total)." -f @($fichiers).Count, @($items).Count)
+if ($dossierSource) {
+  $obsoletes = Get-ChildItem $dest -File -Filter *.jpg | Where-Object { $traites -notcontains $_.Name } | ForEach-Object { $_.Name }
+  if ($obsoletes) {
+    Write-Host ''
+    Write-Host 'Photos presentes sur le site mais absentes du dossier source (a supprimer a la main si la toile est retiree) :'
+    $obsoletes | ForEach-Object { Write-Host ('  - ' + $_) }
+  }
+}
 Write-Host 'Etape suivante : envoyer le dossier sur GitHub (GitHub Desktop : Commit puis Push).'

@@ -1,14 +1,16 @@
 {
   "generated": "local",
   "photos": [
-    { "src": "/media/photos/toiles/01-rose-sur-bois-et-resine.jpg", "titre": "Rose sur bois et résine" },
-    { "src": "/media/photos/toiles/02-rose-sur-bois-et-resine.jpg", "titre": "Rose sur bois et résine" },
     { "src": "/media/photos/toiles/bisou-magique.jpg", "titre": "Bisou magique" },
     { "src": "/media/photos/toiles/candy-pink-lady.jpg", "titre": "Candy Pink Lady" },
-    { "src": "/media/photos/toiles/comme-un-poisson-dans-sa-bulle-12.jpg", "titre": "Comme un poisson dans sa bulle 12" },
+    { "src": "/media/photos/toiles/comme-un-poisson-dans-sa-bulle.jpg", "titre": "Comme un poisson dans sa bulle" },
     { "src": "/media/photos/toiles/debut-de-la-fin.jpg", "titre": "Début de la fin" },
+    { "src": "/media/photos/toiles/laisse-aller.jpg", "titre": "Laissé aller" },
     { "src": "/media/photos/toiles/orne-d-une-folie.jpg", "titre": "Orné d'une folie" },
-    { "src": "/media/photos/toiles/plume-acrylique-09.jpg", "titre": "Plume acrylique 09" },
+    { "src": "/media/photos/toiles/plume-acrylique.jpg", "titre": "Plume acrylique" },
+    { "src": "/media/photos/toiles/rose-sur-bois-et-resine-fermee.jpg", "titre": "Rose sur bois et résine", "vue": "fermée" },
+    { "src": "/media/photos/toiles/rose-sur-bois-et-resine-ouverte.jpg", "titre": "Rose sur bois et résine", "vue": "ouverte" },
+    { "src": "/media/photos/toiles/surprise-a-penser.jpg", "titre": "Surprise à penser" },
     { "src": "/media/photos/toiles/the-word-of-vaiana.jpg", "titre": "The Word of Vaiana" }
   ]
 }
