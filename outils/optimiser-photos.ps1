@@ -4,6 +4,7 @@
 # Pour chaque photo :
 #   - redimensionnement (1800 px maximum sur le grand cote), JPEG qualite 82
 #   - nom de fichier propre (sans accents ni espaces)
+#   - filigrane "(c) Nathart" en diagonale au centre (desactivable avec -SansFiligrane)
 #   - copie dans media/photos/toiles/
 #   - titre ajoute a media/photos/toiles/titres.json (modifiable ensuite a la main)
 #   - fiche vide ajoutee a media/photos/toiles/details.json (dimensions, matiere, peinture, prix)
@@ -17,6 +18,7 @@
 [CmdletBinding(PositionalBinding = $false)]
 param(
   [ValidateSet('toiles', 'cube', 'anneau')][string]$Galerie = 'toiles',
+  [switch]$SansFiligrane,
   [Parameter(ValueFromRemainingArguments = $true)][string[]]$Chemins
 )
 $ErrorActionPreference = 'Stop'
@@ -60,6 +62,37 @@ function Split-Titre([string]$t) {
   if ($m.Success) { return @($m.Groups[1].Value.Trim(), $m.Groups[2].Value.Trim()) }
   return @($t, '')
 }
+# Filigrane "(c) Nathart" : en diagonale, au centre, blanc a ~40 % d'opacite avec un fin contour sombre
+# (lisible sur fond clair comme sur fond sombre). Reglages : $FiligraneOpacite (0-255), $FiligraneLargeur (part de la diagonale).
+$Filigrane = -not $SansFiligrane
+$FiligraneOpacite = 105
+$FiligraneLargeur = 0.5
+function Add-Filigrane($g, [int]$w, [int]$h) {
+  $texte = ([string][char]0xA9) + ' Nathart'
+  $famille = 'Segoe Script'
+  if (-not ([Drawing.FontFamily]::Families | Where-Object { $_.Name -eq $famille })) { $famille = 'Georgia' }
+  $style = $(if ($famille -eq 'Georgia') { 2 } else { 0 })
+  $ff = New-Object Drawing.FontFamily($famille)
+  $diag = [Math]::Sqrt($w * $w + $h * $h)
+  $angle = [Math]::Atan2($h, $w) * 180 / [Math]::PI
+  $angle = [Math]::Max(15, [Math]::Min(35, $angle))
+  $cible = [Math]::Min($FiligraneLargeur * $diag, 0.8 * $w)
+  $fmt = New-Object Drawing.StringFormat
+  $fmt.Alignment = [Drawing.StringAlignment]::Center; $fmt.LineAlignment = [Drawing.StringAlignment]::Center
+  $zone = New-Object Drawing.RectangleF(-5000, -500, 10000, 1000)
+  $mesure = New-Object Drawing.Drawing2D.GraphicsPath
+  $mesure.AddString($texte, $ff, $style, 100, $zone, $fmt)
+  $taille = 100 * $cible / $mesure.GetBounds().Width
+  $chemin = New-Object Drawing.Drawing2D.GraphicsPath
+  $chemin.AddString($texte, $ff, $style, $taille, $zone, $fmt)
+  $g.SmoothingMode = [Drawing.Drawing2D.SmoothingMode]::AntiAlias
+  $g.TranslateTransform($w / 2, $h / 2); $g.RotateTransform(-$angle)
+  $stylo = New-Object Drawing.Pen([Drawing.Color]::FromArgb([int]($FiligraneOpacite * 0.7), 0, 0, 0), [Math]::Max(1.0, $taille / 45))
+  $pinceau = New-Object Drawing.SolidBrush([Drawing.Color]::FromArgb($FiligraneOpacite, 255, 255, 255))
+  $g.DrawPath($stylo, $chemin); $g.FillPath($pinceau, $chemin)
+  $g.ResetTransform()
+  $stylo.Dispose(); $pinceau.Dispose(); $chemin.Dispose(); $mesure.Dispose(); $ff.Dispose()
+}
 function Esc([string]$s) { $s.Replace('\', '\\').Replace('"', '\"') }
 function Read-Json([string]$path) { if (Test-Path $path) { [IO.File]::ReadAllText($path, [Text.Encoding]::UTF8) | ConvertFrom-Json } else { $null } }
 
@@ -98,7 +131,9 @@ foreach ($f in $fichiers) {
     $g = [Drawing.Graphics]::FromImage($bmp)
     $g.Clear([Drawing.Color]::Black)
     $g.InterpolationMode = 'HighQualityBicubic'; $g.SmoothingMode = 'HighQuality'; $g.PixelOffsetMode = 'HighQuality'; $g.CompositingQuality = 'HighQuality'
-    $g.DrawImage($img, 0, 0, $w, $h); $g.Dispose()
+    $g.DrawImage($img, 0, 0, $w, $h)
+    if ($Filigrane) { Add-Filigrane $g $w $h }
+    $g.Dispose()
     $nom = (Get-Slug ([IO.Path]::GetFileNameWithoutExtension($f.Name))) + '.jpg'
     $bmp.Save((Join-Path $dest $nom), $codec, $ep); $bmp.Dispose()
     $traites += $nom
