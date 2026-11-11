@@ -49,7 +49,7 @@ sitemap.xml  robots.txt       Référencement
 
 ## Mode « site privé » (en cours)
 
-`vercel.json` envoie l'en-tête `X-Robots-Tag: noindex, nofollow` : Google et les autres moteurs n'indexent pas le site tant qu'il n'est pas terminé. **Au lancement, supprimer cette ligne de `vercel.json`** (puis pousser sur GitHub), sinon le site restera invisible dans les recherches.
+`vercel.json` envoie l'en-tête `X-Robots-Tag: noindex, nofollow, noai, noimageai` : Google et les autres moteurs n'indexent pas le site tant qu'il n'est pas terminé, et `noai, noimageai` demande aux outils d'IA de ne pas utiliser les textes et les images. **Au lancement, remplacer la valeur par `noai, noimageai`** (c'est-à-dire retirer `noindex, nofollow`, puis pousser sur GitHub), sinon le site restera invisible dans les recherches.
 
 ## Photos et vidéos (dossier `media/`)
 
@@ -76,3 +76,15 @@ Deux volumes 3D sous le carrousel de la page Galerie, dans la section « Œuvres
 - **L'anneau** (`media/photos/anneau/`) : un panneau par photo, quel que soit leur nombre (3 à 24 conseillé). Rotation lente continue, pause au survol, glisser à la souris ou au doigt avec inertie, boutons et flèches du clavier.
 - Pour ajouter des œuvres : glisser les photos sur **`Optimiser-cube.bat`** ou **`Optimiser-anneau.bat`**, puis envoyer sur GitHub. Les titres se modifient dans `titres.json` du dossier concerné. Pas de fiche prix pour ces deux volumes.
 - Si le visiteur a demandé « moins de mouvement » dans son système, la rotation automatique est coupée (les boutons restent).
+
+## Protection du contenu (dissuasion)
+
+Mesures en place (aucune ne peut être absolue : tout ce qu'un navigateur affiche peut être capturé) :
+
+- **Texte** : sélection et copie bloquées (`assets/css/style.css` + `assets/js/protection.js`). Un copier-coller produit un message de droits d'auteur. Les champs du formulaire et les éléments `class="copiable"` (l'e-mail des mentions légales) restent utilisables.
+- **Images et vidéos** : clic droit, appui long, glisser-déposer et bouton « Télécharger » du lecteur vidéo bloqués ; images masquées à l'impression.
+- **Robots d'IA** : `robots.txt` interdit les principaux robots d'entraînement et de collecte (GPTBot, ClaudeBot, CCBot, Google-Extended, PerplexityBot, etc.) et l'en-tête `noai, noimageai` demande de ne pas utiliser images et textes.
+- **Qualité des images** : 1800 px maximum pour les toiles, 1000 px pour le cube et l'anneau, jamais les originaux.
+- **Mentions** : © Nathart et clause de propriété intellectuelle dans les mentions légales.
+
+Limites : une capture d'écran, les outils de développement du navigateur ou la désactivation de JavaScript contournent ces blocages. Un filigrane discret (« © Nathart » incrusté dans les images) est la seule protection qui suive l'image après copie ; il peut être ajouté à l'outil `Optimiser-photos.bat` si besoin.

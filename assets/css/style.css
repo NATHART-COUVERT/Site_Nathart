@@ -473,6 +473,12 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .pied__legal a:hover { color: var(--or); }
 @media (max-width: 800px) { .pied__grille { grid-template-columns: 1fr; } }
 
+/* ---------- Protection dissuasive du contenu (voir le README) ---------- */
+body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+input, textarea, select, [contenteditable], .copiable { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+img, video { -webkit-user-drag: none; -webkit-touch-callout: none; }
+@media print { img, video { display: none !important; } }
+
 /* ---------- Mouvement réduit : on coupe les animations ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
