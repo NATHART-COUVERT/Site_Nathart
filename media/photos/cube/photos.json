@@ -3,8 +3,8 @@
   "photos": [
     { "src": "/media/photos/cube/harmonie.jpg", "titre": "Harmonie" },
     { "src": "/media/photos/cube/la-rose-dansante.jpg", "titre": "La rose dansante" },
-    { "src": "/media/photos/cube/le-passeur-d-ame.jpg", "titre": "Le passeur d'âme" },
-    { "src": "/media/photos/cube/l-orchidee.jpg", "titre": "L'Orchidée" },
+    { "src": "/media/photos/cube/le-passeur-d-ame.jpg", "titre": "Le passeur d’âme" },
+    { "src": "/media/photos/cube/l-orchidee.jpg", "titre": "L’Orchidée" },
     { "src": "/media/photos/cube/nostalgie-du-temps.jpg", "titre": "Nostalgie du temps" },
     { "src": "/media/photos/cube/synergie.jpg", "titre": "Synergie" }
   ]
