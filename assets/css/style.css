@@ -513,7 +513,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .lecture__corps li { margin-bottom: 0.3em; }
 .lecture .lecture__corps h4 { font-family: var(--police-album); font-style: normal; font-weight: 700; font-size: 1.7rem; }
 .lecture h4 { color: var(--or); font-size: 1.25rem; font-style: italic; margin: 1.3rem 0 0.2rem; }
-.lecture__ia { display: inline-block; margin: 0 0 0.8rem; padding: 0.1rem 0.7rem; border: 1px solid var(--or); border-radius: 1rem; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--or); }
+.lecture__ia { margin: 1rem 0 0; font-size: 0.95rem; font-style: italic; color: var(--texte-doux); opacity: 0.8; text-align: center; }
 .commentaire { margin: 1.5rem auto 0; max-width: var(--largeur-texte); padding: 1rem 1.3rem; text-align: left; border-left: 3px solid var(--or); background: rgba(201, 169, 110, 0.06); }
 .commentaire p { margin: 0 0 0.5em; font-style: italic; }
 .commentaire .commentaire__titre { font-style: normal; color: var(--or); letter-spacing: 0.08em; font-size: 1rem; text-transform: uppercase; }
