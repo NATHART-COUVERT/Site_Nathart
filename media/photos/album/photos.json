@@ -3,6 +3,16 @@
   "photos": [
     { "src": "/media/photos/album/album-carnet-de-bord-01.jpg?v=6e2269ef65", "titre": "Album carnet de bord", "vue": "01" },
     { "src": "/media/photos/album/album-carnet-de-bord-02.jpg?v=2443892338", "titre": "Album carnet de bord", "vue": "02" },
-    { "src": "/media/photos/album/album-carnet-de-bord-03.jpg?v=8d9f2a7ea5", "titre": "Album carnet de bord", "vue": "03" }
+    { "src": "/media/photos/album/album-carnet-de-bord-03.jpg?v=8d9f2a7ea5", "titre": "Album carnet de bord", "vue": "03" },
+    { "src": "/media/photos/album/bisou-magique.jpg?v=289b645086", "titre": "Bisou magique" },
+    { "src": "/media/photos/album/candy-pink-lady.jpg?v=5d44590cb7", "titre": "Candy pink lady" },
+    { "src": "/media/photos/album/errarum-humanum-es.jpg?v=0bcb9a675a", "titre": "Errarum humanum es" },
+    { "src": "/media/photos/album/eveil-feline.jpg?v=8a05070720", "titre": "Éveil Féline" },
+    { "src": "/media/photos/album/harmonie.jpg?v=6039fe3895", "titre": "Harmonie" },
+    { "src": "/media/photos/album/ornee-d-une-folie-feerique.jpg?v=a23d1bce1e", "titre": "Ornée d'une folie féerique" },
+    { "src": "/media/photos/album/purpel-raze.jpg?v=8511c107ea", "titre": "Purpel raze" },
+    { "src": "/media/photos/album/seconde-peau.jpg?v=7864a04937", "titre": "Seconde peau" },
+    { "src": "/media/photos/album/synergie.jpg?v=11847e9c38", "titre": "Synergie" },
+    { "src": "/media/photos/album/the-world-of-vaiana.jpg?v=6a9d5a91d1", "titre": "The world of Vaiana" }
   ]
 }

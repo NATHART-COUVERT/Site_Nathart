@@ -6,14 +6,139 @@
   "quatriemeAlt": "Quatrième de couverture du carnet de bord : les mêmes filigranes argentés sur fond violet, avec les deux fermoirs métalliques.",
   "oeuvres": [
     {
-      "titre": "Première page",
+      "titre": "Bisou magique",
       "date": "",
-      "texte": [],
+      "texte": [
+        "Je suis née quelques années après la perte de cette grande dame. Je suis imprégnée de son histoire sans en connaître forcément la raison, si ce n’est peut-être le regard de certains hommes sur la féminité.",
+        "Je suis affectée que l’histoire qu’on en retienne reste la femme « objet », pour ne pas dire « facile »… Je suis touchée qu’une femme aussi intelligente ait pu souffrir autant d’un manque d’amour inconditionnel. Je suis consciente que son côté femme-enfant ait pu attirer tant de convoitises, que son époque considérait la femme comme étant au service de… Je suis sensible au fait que la perte de son bébé ait pu l’anéantir. Je suis maman, je sais combien une femme a besoin de donner la Vie.",
+        "Je suis cette maman qui a donné tant de bisous magiques pour apaiser son petit… Je suis à lui offrir ce qui représente la femme-enfant aux États-Unis : Minnie. Je suis cette artiste qui peut rendre possible l’impossible en créant une situation espérée.",
+        "Je suis heureuse de lui dédier ce bisou d’amour pour la rassurer, lui dire qu’aujourd’hui un message peut passer dans l’univers de chacun et guérir les blessures…"
+      ],
       "photos": [
-        {
-          "fichier": "album-carnet-de-bord-03.jpg",
-          "alt": "Première page du carnet : une rose rose dessinée, une phrase écrite à la main le long de la tige et la signature « Nath »."
-        }
+        { "fichier": "bisou-magique.jpg", "alt": "Bisou magique : un portrait en gris et blanc d’une femme blonde aux lèvres rouges, embrassée sur la joue par Minnie." }
+      ]
+    },
+    {
+      "titre": "Candy pink lady",
+      "date": "",
+      "texte": [
+        "Je suis cette lycéenne à la nostalgie de ces créateurs qui m’ont fait tant rêver. Je suis gourmande de l’odeur de ce parfum si souvent porté, aux notes sucrées pouvant charmer la sensualité…",
+        "Je suis de ces femmes pouvant chausser de jolis talons pour affiner une jambe. Je suis tout autant de ces femmes qui confectionnent des articles à plumes, assumant une connexion avec la nature…",
+        "Je suis habillée de ce flamant rose aux plumes délicates, aux couleurs variées. Je suis de ses jambes toutes fines contrariant la rondeur d’un corps…",
+        "Je suis capable de porter du rose comme une petite fille. Je suis susceptible de prendre l’essence de cette enfant en la laissant exprimer son âme intérieure…"
+      ],
+      "photos": [
+        { "fichier": "candy-pink-lady.jpg", "alt": "Candy pink lady : des jambes en talons hauts au milieu de flamants roses, sur un ciel bleu turquoise." }
+      ]
+    },
+    {
+      "titre": "Ornée d’une folie féerique",
+      "date": "",
+      "texte": [
+        "Je suis de nature pudique, épousant des courbes « plutôt droites » que galbées. Je suis délicate d’être habillée en simple soi-même et d’un simple parfum.",
+        "Je suis un état d’âme à fleur de peau, passant du rire aux larmes, de la colère à l’amour. Je suis plutôt d’un esprit créatif, aux couleurs variées qui enchantent mes pinceaux.",
+        "Je suis une femme-enfant qui aime la Vie sous toutes ses nuances. Je suis dans la magie de Mickey où tout est beau d’un regard bienveillant. Je suis cet enfant qui s’émerveille de féérie et retrouve cette innocence oubliée.",
+        "Je suis la « peintresse » de ma Vie. Je suis l’artiste des couleurs que je lui donne. Je suis la folie douce se jetant sur le « chant » de la liberté. Je suis actrice des demi-teintes que j’accorde à l’importance d’être soi…",
+        "Je suis une « auto-contraste » de moi-même, aux valeurs simples de la Vie."
+      ],
+      "photos": [
+        { "fichier": "ornee-d-une-folie-feerique.jpg", "alt": "Ornée d’une folie féerique : une silhouette de femme allongée en noir et blanc, sous une explosion de couleurs, avec Mickey." }
+      ]
+    },
+    {
+      "titre": "Seconde peau",
+      "date": "",
+      "texte": [
+        "Je suis face à ce regard de « biche » si profond, qui pourrait en dire long… Je suis hypnotisée par cette sensualité digne d’une pin-up modernisée. Je suis plongée dans les onomatopées de sa peau qui me rappelle que la Vie nous marque en silence, de souvenirs.",
+        "Je suis dans le voyage du temps qui passe, à l’ombre d’une époque « yéyé » teintée de rock… Je suis aussi de cette génération où les disques vinyles nous faisaient danser et chanter à tue-tête. Je suis heureuse de cette balade musicale ardente.",
+        "Je suis de ce drapé soyeux évoquant la discrétion des secrets les plus intimes. Je suis de cette pudeur, tout en laissant transparaître ce qui n’est pas toujours facile. Je suis sûre qu’il vous plaira de rêver à ces souvenirs."
+      ],
+      "photos": [
+        { "fichier": "seconde-peau.jpg", "alt": "Seconde peau : une pin-up rousse allongée dans un drapé turquoise, la peau couverte de petits dessins, avec un disque vinyle." }
+      ]
+    },
+    {
+      "titre": "The world of Vaiana",
+      "date": "",
+      "texte": [
+        "Je suis de ce temps partagé entre l’enfance et la femme, liée par la fragrance sucrée que nous offre Kenzo… Je suis de ce bleu si évocateur d’horizons divers, éveillant à la rêverie. Je suis envoûtée de ce parfum transgressant la féminité par ses notes florales et fruitées.",
+        "Je suis émerveillée de cette petite Vaiana qui a su user de son espièglerie pour sauver son île polynésienne, Motunui, du pouvoir néfaste de Te Kā et rendre à son île le cœur de jade… Je suis cette douce malicieuse, désobéissant aux yeux des plus grands, pour aller au bout de ses convictions et croyances.",
+        "Je suis les courbes de mon pinceau, traçant ces douceurs transparentes de lumière. Je suis dans le laisser-penser de ce que l’on ne voit que parce que d’autres ne regardent pas…"
+      ],
+      "photos": [
+        { "fichier": "the-world-of-vaiana.jpg", "alt": "The world of Vaiana : le visage d’une petite fille en gris, dans un cadre fleuri sur un fond bleu et or." }
+      ]
+    },
+    {
+      "titre": "Purple Haze",
+      "date": "",
+      "texte": [
+        "Je suis, l’expérience de la confiance en moi. Je suis, prête pour ce défi, te voilà sous mes pinceaux, Jimi. Je suis, chaque couleur d’émotions et d’optimisme, ainsi que toutes les nuances cachées qui te révèlent doucement.",
+        "Je suis, également la femme qui se livre à toi comme aucune autre à ton âme. Je suis, la rêveuse au coucher de ce soleil, qui aime contempler le rivage de ses trésors dissimulés.",
+        "Je suis les marques de feu sur ta guitare que tu as brûlée sur scène, toi le seul qui savais la faire pleurer. Je suis absente dans mes moments les plus sombres. Je suis également l’insolente que tu regardes par-dessus tes lunettes. Je suis, la « peintresse » à l’aube de son destin…",
+        "« I am » sure that through the purple haze, you ride the wind of your little wing look at me… Jimi Hendrix",
+        "Merci"
+      ],
+      "photos": [
+        { "fichier": "purpel-raze.jpg", "alt": "Purple Haze : une guitare électrique posée sur le sable d’une crique au coucher du soleil." }
+      ]
+    },
+    {
+      "titre": "Errare humanum est",
+      "date": "",
+      "texte": [
+        "Je suis, elle et elle est moi. Je suis d’un univers ni ombre, ni lumière, guidée par des milliers d’étoiles. Je suis, le clin d’œil à Mashiah, en respect de son cœur ouvert.",
+        "Je suis, le passé qui m’a forgée, comme l’oiseau tout droit venu du grand livre de ma Vie, de ses pliures manipulées par les consciences erronées. Je suis, cette femme qui prend son essence depuis la terre et le feu de mon être.",
+        "Je suis, cette fleur de lotus émergeant de ses profondeurs pour éclore à la Vie, une plume à la main pour ne pas oublier. Je suis, libre comme le papillon, patiente, légère et forte.",
+        "Je suis, l’espace de ses bras pour tout reconstruire. Je suis, le toucher du doigt vers un nuage en forme de dragon et la perspective de mes chérubins.",
+        "Je suis, sous les encouragements de ce cavalier bienveillant. Je suis, heureuse d’être enfin qui je suis au fond de moi.",
+        "Merci"
+      ],
+      "note": "Œuvre présentée au concours Art Prize Luxembourg en 2017.",
+      "photos": [
+        { "fichier": "errarum-humanum-es.jpg", "alt": "Errare humanum est : un homme aux bras largement ouverts, un arbre rouge qui pousse de son cœur, un fond étoilé, des oiseaux et des plumes." }
+      ]
+    },
+    {
+      "titre": "Harmonie",
+      "date": "",
+      "texte": [
+        "Je suis encore interloquée par le nombrilisme de la société en général, qui ne regarde pas plus loin que son téléviseur ou son smartphone… Je suis décontenancée de voir que la majeure partie ne cherche pas à écouter son fond intérieur et laisse les mensonges dicter ses pensées…",
+        "Je suis dépassée qu’on puisse encore, de nos jours, entendre des personnes enfermer des peuples dans des tubes de peintre, sous prétexte qu’ils sont de couleurs différentes ! Je suis assurée qu’il faut plusieurs couleurs, des ombres et des lumières pour que l’œuvre prenne tout son éclat. Je suis persuadée que nous avons beaucoup à apprendre des divers peuples, non pas des manuels d’école, mais de leurs cultures ancestrales.",
+        "Je suis animée par l’idée qu’un jour nous partagerons nos savoirs, sans secret, sans jugement, juste pour le bien de tous.",
+        "Je suis de ces enfants qui veulent croire qu’il est possible de changer le regard du monde pour ne faire qu’un.",
+        "Je suis en son livre ouvert, le reflet de son âme ; je lis dans ses yeux que l’important est d’être soi pour partager ce que l’on a de meilleur…"
+      ],
+      "photos": [
+        { "fichier": "harmonie.jpg", "alt": "Harmonie : le visage d’une jeune femme à la peau brune, une grande fleur blanche à sa droite et un oiseau au-dessus du front, peints sur du bois brut." }
+      ]
+    },
+    {
+      "titre": "Synergie",
+      "date": "",
+      "texte": [
+        "Je suis à l’éveil de tout ce que nous offrent la nature et ses bienfaits. Je suis enchanteresse de rappeler un regard d’autrefois, où la végétation était respectée… Je suis enracinée à notre chère terre Gaïa, la gratifiant d’honneur pour sa force à transmuter les énergies en amour. Je suis attristée de constater ce que nous lui infligeons de par nos consommations…",
+        "Je suis également sensible aux êtres de lumière qui travaillent en son ventre de mère. Je suis charmée de leurs capacités à soulever les consciences en nous soignant autrement.",
+        "Je suis en prière pour qu’ils soient bénis d’être si présents pour nous. Je suis époustouflée de me rendre compte de combien le monde subtil est grandissime et grandiose… Je suis rayonnante de leur rendre grâce.",
+        "Je suis heureuse de voir que chaque peuple possède et partage un savoir ancestral trop souvent « charlatané » par méconnaissance… Je suis honorée de tout ce qu’il me reste à découvrir pour être moi en mon âme, puisque c’est le but ultime de vivre ici-bas : se réaliser…"
+      ],
+      "photos": [
+        { "fichier": "synergie.jpg", "alt": "Synergie : un visage de femme couvert de fleurs et de feuillages colorés, avec des papillons, peint sur du bois." }
+      ]
+    },
+    {
+      "titre": "Éveil féline",
+      "date": "",
+      "texte": [
+        "Je suis, cette petite fille pleine d’insouciance qui chante à tue-tête pour réveiller les dormeurs ; parfois insolente, je réponds à l’injustice, dans une prière innocente tout comme le rêve de ce petit tigreau qui m’emmène jouer dans sa Vie en toute impunité. Dans ses songes nous sommes de la même énergie, mais je suis d’un monde de soumission.",
+        "Devenue adolescente blessée, battante et rêveuse, je suis à présent une épouse et maman qui s’évertue à être la plus juste possible. Je ne suis en réalité que le paraître de moi-même, sans convenir à celui qui n’est autre que le prisonnier de ses propres peurs. Revenue à la Vie, plus forte, telle une panthère libérant sa puissance intérieure !",
+        "Je suis toi, Lion, tu es moi, nous ne sommes qu’un, tressés à l’unisson, unis par la force ; à travers la puissance de tes yeux je vise l’horizon, je suis là. Les signes du temps révèlent la sagesse de nos âges à travers le dos de nos mains vieillies, portant les sillons de leurs Vies. Je suis, porteuse de l’arbre de Vie, symbole du cycle de renaissance, d’épanouissement, à l’origine du bonheur.",
+        "Je suis, la force. Je suis, le lion et je te vois…",
+        "Merci"
+      ],
+      "note": "Œuvre présentée au concours Art Prize 2020.",
+      "photos": [
+        { "fichier": "eveil-feline.jpg", "alt": "Éveil féline : un triptyque. À gauche un enfant en prière au-dessus d’un tigreau endormi, au centre un félin d’où émerge une femme dans une lumière bleue, à droite un lion tenu par des mains." }
       ]
     }
   ]

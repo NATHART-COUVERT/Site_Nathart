@@ -42,10 +42,11 @@
   function pageTexte(f, numero) {
     var p = el("div", "page page--texte");
     var o = f.oeuvre;
-    if (o.titre) p.appendChild(el("h3", "page__titre", o.titre));
+    if (o.titre) p.appendChild(el("h3", "page__titre", f.suite ? o.titre + " (suite)" : o.titre));
     var corps = el("div", "page__texte");
-    if (o.texte && o.texte.length) {
-      o.texte.forEach(function (ligne) { corps.appendChild(el("p", "", ligne)); });
+    if (f.paras && f.paras.length) {
+      f.paras.forEach(function (ligne) { corps.appendChild(el("p", "", ligne)); });
+      if (f.derniere && o.note) corps.appendChild(el("p", "page__note", o.note));
     } else {
       corps.appendChild(el("p", "page__vide", "Le texte de cette page arrive bientôt."));
     }
@@ -116,9 +117,9 @@
   /* réduit la taille du texte jusqu'à ce qu'il tienne dans la page */
   function ajuster() {
     livre.querySelectorAll(".page__texte").forEach(function (c) {
-      var taille = 1.2;
+      var taille = 1.5;
       c.style.fontSize = taille + "rem";
-      while (c.scrollHeight > c.clientHeight + 1 && taille > 0.72) { taille -= 0.04; c.style.fontSize = taille + "rem"; }
+      while (c.scrollHeight > c.clientHeight + 1 && taille > 1.05) { taille -= 0.04; c.style.fontSize = taille + "rem"; }
     });
   }
 
@@ -250,6 +251,32 @@
       return r.json();
     });
   }
+  /* découpe un texte en pages d'environ 430 caractères (coupe entre les phrases ; les textes courts restent sur une page) */
+  var CARACTERES_PAR_PAGE = 430;
+  function paginer(paras) {
+    var pages = [], page = [], taille = 0;
+    function fermer() { if (page.length) { pages.push(page); page = []; taille = 0; } }
+    paras.forEach(function (para) {
+      var morceaux = para.length <= CARACTERES_PAR_PAGE ? [para] : (para.match(/[^.!?…]+[.!?…»]*\s*/g) || [para]);
+      var courant = "";
+      morceaux.forEach(function (m, i) {
+        if (taille + courant.length + m.length > CARACTERES_PAR_PAGE && (courant || page.length)) {
+          if (courant) { page.push(courant.trim()); courant = ""; }
+          fermer();
+        }
+        courant += m;
+        if (para.length <= CARACTERES_PAR_PAGE) { page.push(courant.trim()); taille += courant.length; courant = ""; }
+      });
+      if (courant) { page.push(courant.trim()); taille += courant.length; }
+    });
+    fermer();
+    /* une dernière page trop courte est rattachée à la précédente */
+    if (pages.length > 1) {
+      var d = pages[pages.length - 1].join(" ").length;
+      if (d < 130) { var dernier = pages.pop(); pages[pages.length - 1] = pages[pages.length - 1].concat(dernier); }
+    }
+    return pages.length ? pages : [[]];
+  }
   function initialiser(donnees, liste) {
     var adresses = {};
     (liste.photos || []).forEach(function (p) {
@@ -263,9 +290,13 @@
       var photos = (o.photos || []).map(function (p) {
         return typeof p === "string" ? { src: url(p) } : { src: url(p.fichier), alt: p.alt };
       });
-      var oeuvre = { titre: o.titre || "", date: o.date || "", texte: o.texte || [], photos: photos };
-      faces.push({ type: "texte", oeuvre: oeuvre });
-      faces.push({ type: "photos", oeuvre: oeuvre });
+      var oeuvre = { titre: o.titre || "", date: o.date || "", note: o.note || "", photos: photos };
+      /* "pages" : le texte découpé en plusieurs pages (liste de listes de paragraphes) ; sinon "texte" tient sur une page */
+      var pages = o.pages && o.pages.length ? o.pages : paginer(o.texte || []);
+      pages.forEach(function (paras, k) {
+        faces.push({ type: "texte", oeuvre: oeuvre, paras: paras, suite: k > 0, derniere: k === pages.length - 1 });
+        faces.push({ type: "photos", oeuvre: oeuvre });
+      });
     });
     faces.push({ type: "papier" });
     faces.push({ type: "quatrieme", img: url(donnees.quatrieme), alt: donnees.quatriemeAlt });

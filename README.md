@@ -123,3 +123,8 @@ Lectures d'œuvres générées par une IA, annoncées comme telles (encadré « 
 
 ### Livre d'or (`/livre-d-or/`)
 Messages publiés à la main dans `livre-d-or/index.html` (modèle commenté `<blockquote class="message">`), uniquement avec l'accord de l'auteur, de préférence prénom ou initiales. Le formulaire envoie les messages par e-mail (Formspree) : ils ne sont **jamais publiés automatiquement**. Le principe est décrit dans la politique de confidentialité.
+## Album (textes « Je suis… ») et Lectures d'ame - mise a jour
+
+- **Police manuscrite** : Caveat (licence libre OFL), hebergee dans `assets/fonts/caveat-latin.woff2`, variable CSS `--police-album` (album + lectures). Pour utiliser une autre police (ex. la tienne creee avec Calligraphr) : ajouter un `@font-face` et changer cette variable.
+- **Album** : `media/album/album.json`. Chaque oeuvre = `titre`, `texte` (liste de paragraphes), `note` (facultatif, ex. concours), `photos`. Un texte long est decoupe automatiquement en plusieurs pages (environ 430 caracteres) ; la photo de l'oeuvre reste a droite de chaque page. Photos : `Optimiser-album.bat` (dossier `media/photos/album/`).
+- **Lectures d'ame** : page `lectures/index.html`, une `<article class="lecture">` par oeuvre (modele deja en place). Photos propres a cette page : `media/photos/lectures/` (outil : `optimiser-photos.ps1 -Galerie lectures`). Les lectures sont toujours presentees comme generees par IA.

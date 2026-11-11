@@ -19,7 +19,7 @@ function empreinte(chemin) {
   return createHash('md5').update(readFileSync(chemin)).digest('hex').slice(0, 10);
 }
 
-const galeries = ['toiles', 'cube', 'anneau', 'album'];
+const galeries = ['toiles', 'cube', 'anneau', 'album', 'lectures'];
 const extensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
 const champs = ['dimensions', 'matiere', 'peinture', 'prix'];
 
@@ -63,3 +63,4 @@ for (const galerie of galeries) {
   }
 }
 process.exit(0);
+

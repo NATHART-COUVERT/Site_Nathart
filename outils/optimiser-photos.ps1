@@ -1,4 +1,4 @@
-# Optimise des photos de toiles pour le web et met a jour la galerie.
+﻿# Optimise des photos de toiles pour le web et met a jour la galerie.
 #
 # Usage : glisser-deposer des photos (ou un dossier) sur "Optimiser-photos.bat".
 # Pour chaque photo :
@@ -17,7 +17,7 @@
 
 [CmdletBinding(PositionalBinding = $false)]
 param(
-  [ValidateSet('toiles', 'cube', 'anneau', 'album')][string]$Galerie = 'toiles',
+  [ValidateSet('toiles', 'cube', 'anneau', 'album', 'lectures')][string]$Galerie = 'toiles',
   [switch]$SansFiligrane,
   [Parameter(ValueFromRemainingArguments = $true)][string[]]$Chemins
 )
@@ -25,7 +25,7 @@ $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 
 # toiles : carrousel (1800 px, avec fiches d'oeuvre) ; cube et anneau : volumes 3D (1000 px suffisent)
-$MaxPx   = $(switch ($Galerie) { 'toiles' { 1800 } 'album' { 1600 } default { 1000 } })
+$MaxPx   = $(switch ($Galerie) { 'toiles' { 1800 } 'album' { 1600 } 'lectures' { 1200 } default { 1000 } })
 $Qualite = 82
 $repo    = Split-Path -Parent $PSScriptRoot
 $dest    = Join-Path $repo ('media\photos\' + $Galerie)
@@ -187,3 +187,4 @@ if ($dossierSource) {
   }
 }
 Write-Host 'Etape suivante : envoyer le dossier sur GitHub (GitHub Desktop : Commit puis Push).'
+

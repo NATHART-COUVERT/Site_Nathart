@@ -26,6 +26,12 @@
   font-weight: 700; font-style: normal; font-display: swap;
 }
 
+@font-face {
+  font-family: "Caveat";
+  src: url("/assets/fonts/caveat-latin.woff2") format("woff2");
+  font-weight: 400 700; font-style: normal; font-display: swap;
+}
+
 /* ---------- Variables ---------- */
 :root {
   --fond: #070808;
@@ -36,6 +42,7 @@
   --texte-doux: #e8e0d5;
   --police-titre: "Pinyon Script", "Snell Roundhand", cursive;
   --police-texte: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --police-album: "Caveat", "Segoe Script", "Bradley Hand", cursive; /* ecriture manuscrite : album et lectures */
   --largeur: 62rem;      /* conteneur général */
   --largeur-texte: 46rem; /* colonne de lecture */
   --hauteur-nav: 4.25rem;
@@ -426,7 +433,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 
 /* ---------- L'album : livre à pages tournantes ---------- */
 .livre-scene { --page-l: min(86vw, 22rem); margin: 1.5rem auto 3.5rem; text-align: center; }
-@media (min-width: 700px) { .livre-scene { --page-l: clamp(10rem, 36vw, 23rem); } }
+@media (min-width: 700px) { .livre-scene { --page-l: clamp(10rem, 36vw, 26rem); } }
 .livre-zone { display: grid; place-items: center; overflow: hidden; padding: 1.5rem 0; }
 .livre {
   position: relative; width: var(--page-l); height: calc(var(--page-l) * 1.3333);
@@ -461,8 +468,9 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .page--couverture { padding: 0; background: #1a0f1f; }
 .page--couverture img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
 .page__titre { margin: 0 0 0.7rem; text-align: center; color: #7a5a2a; font-family: var(--police-titre); font-weight: 400; font-size: clamp(1.5rem, 3.2vw, 2.1rem); line-height: 1.15; }
-.page__texte { flex: 1; min-height: 0; overflow: hidden; font-size: 1.2rem; line-height: 1.35; }
+.page__texte { flex: 1; min-height: 0; overflow: hidden; text-align: left; font-size: 1.6rem; line-height: 1.2; font-weight: 500; }
 .page__texte p { margin: 0 0 0.6em; }
+.page__note { margin-top: 0.4em; font-size: 0.85em; font-style: italic; color: #7a5a2a; }
 .page__vide { margin-top: 28%; text-align: center; font-style: italic; color: #8a7458; }
 .page__numero { position: absolute; bottom: 3.5%; font-size: 0.85rem; color: #8a7458; }
 .page--texte .page__numero { left: 9%; }
@@ -490,6 +498,15 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .lecture { margin: 2.5rem auto; max-width: var(--largeur-texte); text-align: center; }
 .lecture__image { margin: 0 auto 1rem; max-width: 22rem; }
 .lecture h3 { color: var(--or); font-size: 1.7rem; margin: 0 0 0.3rem; }
+.lecture details { margin-top: 0.6rem; text-align: left; }
+.lecture summary { cursor: pointer; list-style: none; color: var(--or-clair); font-size: 1.15rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 1rem; border: 1px solid rgba(201, 169, 110, 0.5); display: table; margin: 0 auto; }
+.lecture summary::-webkit-details-marker { display: none; }
+.lecture summary:hover, .lecture summary:focus-visible { background: rgba(201, 169, 110, 0.12); }
+.lecture details[open] summary { margin-bottom: 0.8rem; }
+.lecture__corps { font-family: var(--police-album); font-size: 1.55rem; line-height: 1.35; }
+.lecture__corps p, .lecture__corps ul { margin: 0 0 0.7em; }
+.lecture__corps li { margin-bottom: 0.3em; }
+.lecture .lecture__corps h4 { font-family: var(--police-album); font-style: normal; font-weight: 700; font-size: 1.7rem; }
 .lecture h4 { color: var(--or); font-size: 1.25rem; font-style: italic; margin: 1.3rem 0 0.2rem; }
 .lecture__ia { display: inline-block; margin: 0 0 0.8rem; padding: 0.1rem 0.7rem; border: 1px solid var(--or); border-radius: 1rem; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--or); }
 .messages { display: grid; gap: 1.5rem; max-width: var(--largeur-texte); margin: 2rem auto; }
