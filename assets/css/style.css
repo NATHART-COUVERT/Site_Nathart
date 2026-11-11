@@ -508,6 +508,8 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .lecture summary::-webkit-details-marker { display: none; }
 .lecture summary:hover, .lecture summary:focus-visible { background: rgba(201, 169, 110, 0.12); }
 .lecture details[open] summary { margin-bottom: 0.8rem; }
+.lecture__fermer, .lecture details[open] .lecture__ouvrir { display: none; }
+.lecture details[open] .lecture__fermer { display: inline; }
 .lecture__corps { font-family: var(--police-album); font-size: 1.55rem; line-height: 1.35; }
 .lecture__corps p, .lecture__corps ul { margin: 0 0 0.7em; }
 .lecture__corps li { margin-bottom: 0.3em; }
