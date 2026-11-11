@@ -1,17 +1,17 @@
 {
   "generated": "local",
   "photos": [
-    { "src": "/media/photos/anneau/chat.jpg", "titre": "Chat" },
-    { "src": "/media/photos/anneau/chevalier-coeurdonnier.jpg", "titre": "Chevalier cœurdonnier" },
-    { "src": "/media/photos/anneau/coquelicot.jpg", "titre": "Coquelicot" },
-    { "src": "/media/photos/anneau/errare-humanum-est.jpg", "titre": "Errare humanum est" },
-    { "src": "/media/photos/anneau/eveil-feline.jpg", "titre": "Éveil féline" },
-    { "src": "/media/photos/anneau/leve-de-lune.jpg", "titre": "Levé de lune" },
-    { "src": "/media/photos/anneau/my-dragon.jpg", "titre": "My dragon" },
-    { "src": "/media/photos/anneau/priere-de-l-innoncence.jpg", "titre": "Prière de l’innocence" },
-    { "src": "/media/photos/anneau/purple-hase.jpg", "titre": "Purple Haze" },
-    { "src": "/media/photos/anneau/seconde-peau.jpg", "titre": "Seconde peau" },
-    { "src": "/media/photos/anneau/sophie.jpg", "titre": "Sophie" },
-    { "src": "/media/photos/anneau/soufle-d-eternite.jpg", "titre": "Souffle d’éternité" }
+    { "src": "/media/photos/anneau/chat.jpg?v=456bf6e9cb", "titre": "Chat" },
+    { "src": "/media/photos/anneau/chevalier-coeurdonnier.jpg?v=cfd4ab75ab", "titre": "Chevalier cœurdonnier" },
+    { "src": "/media/photos/anneau/coquelicot.jpg?v=9b357e1970", "titre": "Coquelicot" },
+    { "src": "/media/photos/anneau/errare-humanum-est.jpg?v=6cf75ff561", "titre": "Errare humanum est" },
+    { "src": "/media/photos/anneau/eveil-feline.jpg?v=359cca37aa", "titre": "Éveil féline" },
+    { "src": "/media/photos/anneau/leve-de-lune.jpg?v=aa55af7498", "titre": "Levé de lune" },
+    { "src": "/media/photos/anneau/my-dragon.jpg?v=48af7645a5", "titre": "My dragon" },
+    { "src": "/media/photos/anneau/priere-de-l-innoncence.jpg?v=7a05baf52c", "titre": "Prière de l’innocence" },
+    { "src": "/media/photos/anneau/purple-hase.jpg?v=08a0bb2819", "titre": "Purple Haze" },
+    { "src": "/media/photos/anneau/seconde-peau.jpg?v=4526e24b13", "titre": "Seconde peau" },
+    { "src": "/media/photos/anneau/sophie.jpg?v=b164ece0aa", "titre": "Sophie" },
+    { "src": "/media/photos/anneau/soufle-d-eternite.jpg?v=1865214a1c", "titre": "Souffle d’éternité" }
   ]
 }

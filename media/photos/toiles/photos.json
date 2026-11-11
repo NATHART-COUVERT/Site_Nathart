@@ -1,16 +1,16 @@
 {
   "generated": "local",
   "photos": [
-    { "src": "/media/photos/toiles/bisou-magique.jpg", "titre": "Bisou magique" },
-    { "src": "/media/photos/toiles/candy-pink-lady.jpg", "titre": "Candy Pink Lady" },
-    { "src": "/media/photos/toiles/comme-un-poisson-dans-sa-bulle.jpg", "titre": "Comme un poisson dans sa bulle" },
-    { "src": "/media/photos/toiles/debut-de-la-fin.jpg", "titre": "Début de la fin" },
-    { "src": "/media/photos/toiles/laisse-aller.jpg", "titre": "Laissé aller" },
-    { "src": "/media/photos/toiles/orne-d-une-folie.jpg", "titre": "Orné d’une folie" },
-    { "src": "/media/photos/toiles/plume-acrylique.jpg", "titre": "Plume acrylique" },
-    { "src": "/media/photos/toiles/rose-sur-bois-et-resine-fermee.jpg", "titre": "Rose sur bois et résine", "vue": "fermée" },
-    { "src": "/media/photos/toiles/rose-sur-bois-et-resine-ouverte.jpg", "titre": "Rose sur bois et résine", "vue": "ouverte" },
-    { "src": "/media/photos/toiles/surprise-a-penser.jpg", "titre": "Surprise à penser" },
-    { "src": "/media/photos/toiles/the-word-of-vaiana.jpg", "titre": "The Word of Vaiana" }
+    { "src": "/media/photos/toiles/bisou-magique.jpg?v=e246d2d5ea", "titre": "Bisou magique" },
+    { "src": "/media/photos/toiles/candy-pink-lady.jpg?v=31094257e0", "titre": "Candy Pink Lady" },
+    { "src": "/media/photos/toiles/comme-un-poisson-dans-sa-bulle.jpg?v=9b72c81459", "titre": "Comme un poisson dans sa bulle" },
+    { "src": "/media/photos/toiles/debut-de-la-fin.jpg?v=013b0fe349", "titre": "Début de la fin" },
+    { "src": "/media/photos/toiles/laisse-aller.jpg?v=a5041b7f6d", "titre": "Laissé aller" },
+    { "src": "/media/photos/toiles/orne-d-une-folie.jpg?v=9b911e5ca6", "titre": "Orné d’une folie" },
+    { "src": "/media/photos/toiles/plume-acrylique.jpg?v=8764de8f4b", "titre": "Plume acrylique" },
+    { "src": "/media/photos/toiles/rose-sur-bois-et-resine-fermee.jpg?v=5662821bd6", "titre": "Rose sur bois et résine", "vue": "fermée" },
+    { "src": "/media/photos/toiles/rose-sur-bois-et-resine-ouverte.jpg?v=c679cf4c03", "titre": "Rose sur bois et résine", "vue": "ouverte" },
+    { "src": "/media/photos/toiles/surprise-a-penser.jpg?v=8c5bf992b4", "titre": "Surprise à penser" },
+    { "src": "/media/photos/toiles/the-word-of-vaiana.jpg?v=7319917f91", "titre": "The Word of Vaiana" }
   ]
 }

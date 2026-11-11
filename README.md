@@ -67,6 +67,18 @@ sitemap.xml  robots.txt       Référencement
 - `media/videos/` : vidéos au format **MP4 (H.264 + son AAC)**, 720p, quelques minutes au plus. GitHub refuse les fichiers de plus de 100 Mo : pour des vidéos plus longues, passer par un hébergeur vidéo.
 - Noms de fichiers sans accents ni espaces (`presentation-galerie.mp4`).
 - Une vidéo s'ajoute en copiant le bloc `<figure class="media-video">` de `galerie/index.html`.
+- Les vidéos sont gardées 1 heure en mémoire par les navigateurs : après remplacement d'un fichier du même nom, un visiteur peut revoir l'ancien pendant une heure au plus.
+
+### ⚠️ À FAIRE pour la nouvelle version de la vidéo (dans Shotcut)
+La version actuelle (`presentation-galerie.mp4`, « V3 ») doit être refaite :
+- [ ] **Supprimer le logo « Pippit AI »** en haut à gauche (export sans filigrane de l'outil d'origine, ou recadrage dans Shotcut).
+- [ ] **Ajouter le filigrane « © Nathart »** en diagonale au centre, comme sur les images (texte blanc à environ 40 % d'opacité, filtre « Texte » de Shotcut).
+- [ ] **Vérifier que le son est bien exporté** : la V3 contient une piste audio, mais silencieuse.
+- [ ] **Vérifier le contenu** : la V3 ne montre que le titre « Nathart » animé pendant 64 secondes, sans les toiles.
+- [ ] Exporter en MP4 (H.264 + AAC), 720p, puis remplacer `media/videos/presentation-galerie.mp4` et envoyer sur GitHub.
+
+### Mémoire des navigateurs et images
+Chaque image de la galerie a, dans sa liste `photos.json`, un numéro de version (`?v=…`) calculé à partir de son contenu : quand une image change (nouveau filigrane, nouvelle version), son adresse change et les téléphones et tablettes la rechargent aussitôt. Ne pas insérer d'images de `media/photos/` à la main dans une page avec une adresse sans ce numéro.
 
 ## Cube et anneau 3D (œuvres hors vente)
 

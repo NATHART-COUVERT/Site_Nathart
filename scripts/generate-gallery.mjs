@@ -11,6 +11,13 @@
 // En cas de problème, le script n'échoue jamais : la liste déjà présente dans le dépôt est conservée.
 import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, extname, basename } from 'node:path';
+import { createHash } from 'node:crypto';
+
+// Numéro de version d'une image = empreinte de son contenu : l'adresse (?v=…) change dès que l'image
+// change, donc aucun navigateur ne garde une ancienne version en mémoire (ex. avant/après filigrane).
+function empreinte(chemin) {
+  return createHash('md5').update(readFileSync(chemin)).digest('hex').slice(0, 10);
+}
 
 const galeries = ['toiles', 'cube', 'anneau'];
 const extensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
@@ -41,7 +48,7 @@ for (const galerie of galeries) {
         const t = titres[f];
         const brut = typeof t === 'string' ? t : (t && t.titre) || titreDepuisNom(f);
         const m = brut.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
-        const photo = { src: `/${dossier}/${encodeURIComponent(f)}`, titre: m ? m[1].trim() : brut };
+        const photo = { src: `/${dossier}/${encodeURIComponent(f)}?v=${empreinte(join(dossier, f))}`, titre: m ? m[1].trim() : brut };
         if (m) photo.vue = m[2].trim();
         if (t && typeof t === 'object' && t.alt) photo.alt = t.alt;
         const fiche = details[photo.titre] || {};

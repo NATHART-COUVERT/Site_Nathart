@@ -167,7 +167,9 @@ if ($avecFiches) {
 $items = foreach ($p in (Get-ChildItem $dest -File | Where-Object { @('.jpg', '.jpeg', '.png', '.webp') -contains $_.Extension.ToLower() } | Sort-Object Name)) {
   $t = $titres[$p.Name]; if (-not $t) { $t = Get-Titre ([IO.Path]::GetFileNameWithoutExtension($p.Name)) }
   $parts = Split-Titre $t
-  $champsJson = @(('"src": "/media/photos/' + $Galerie + '/' + $p.Name + '"'), ('"titre": "' + (Esc $parts[0]) + '"'))
+  # numero de version = empreinte du fichier : l'adresse change quand l'image change (pas d'ancienne version en cache)
+  $version = (Get-FileHash -Algorithm MD5 -LiteralPath $p.FullName).Hash.ToLower().Substring(0, 10)
+  $champsJson = @(('"src": "/media/photos/' + $Galerie + '/' + $p.Name + '?v=' + $version + '"'), ('"titre": "' + (Esc $parts[0]) + '"'))
   if ($parts[1]) { $champsJson += '"vue": "' + (Esc $parts[1]) + '"' }
   if ($details.Contains($parts[0])) { foreach ($c in $champs) { $v = $details[$parts[0]][$c]; if ($v) { $champsJson += '"' + $c + '": "' + (Esc $v) + '"' } } }
   '    { ' + ($champsJson -join ', ') + ' }'
