@@ -134,6 +134,8 @@
       f.classList.toggle("est-tournee", tournee);
       f.style.transform = "";
       f.style.zIndex = tournee ? String(j + 1) : String(L - j + 1);
+      /* seules les feuilles proches de la page courante sont affichées : moins de couches 3D, pas de pages qui se chevauchent */
+      f.style.display = Math.abs(j - t) <= 3 ? "" : "none";
     });
   }
 
