@@ -27,8 +27,8 @@
 }
 
 @font-face {
-  font-family: "Caveat";
-  src: url("/assets/fonts/caveat-latin.woff2") format("woff2");
+  font-family: "Dancing Script";
+  src: url("/assets/fonts/dancing-script-latin.woff2") format("woff2");
   font-weight: 400 700; font-style: normal; font-display: swap;
 }
 
@@ -42,7 +42,7 @@
   --texte-doux: #e8e0d5;
   --police-titre: "Pinyon Script", "Snell Roundhand", cursive;
   --police-texte: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --police-album: "Caveat", "Segoe Script", "Bradley Hand", cursive; /* ecriture manuscrite : album et lectures */
+  --police-album: "Dancing Script", "Segoe Script", "Bradley Hand", cursive; /* ecriture manuscrite : album et lectures */
   --largeur: 62rem;      /* conteneur général */
   --largeur-texte: 46rem; /* colonne de lecture */
   --hauteur-nav: 4.25rem;
@@ -510,7 +510,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .lecture details[open] summary { margin-bottom: 0.8rem; }
 .lecture__fermer, .lecture details[open] .lecture__ouvrir { display: none; }
 .lecture details[open] .lecture__fermer { display: inline; }
-.lecture__corps { font-family: var(--police-album); font-size: 1.55rem; line-height: 1.35; }
+.lecture__corps { font-family: var(--police-album); font-size: 1.45rem; line-height: 1.4; }
 .lecture__corps p, .lecture__corps ul { margin: 0 0 0.7em; }
 .lecture__corps li { margin-bottom: 0.3em; }
 .lecture .lecture__corps h4 { font-family: var(--police-album); font-style: normal; font-weight: 700; font-size: 1.7rem; }
