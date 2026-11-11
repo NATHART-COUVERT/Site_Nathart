@@ -1,0 +1,17 @@
+{
+  "generated": "local",
+  "photos": [
+    { "src": "/media/photos/anneau/chat.jpg", "titre": "Chat" },
+    { "src": "/media/photos/anneau/chevalier-coeurdonnier.jpg", "titre": "Chevalier coeurdonnier" },
+    { "src": "/media/photos/anneau/coquelicot.jpg", "titre": "Coquelicot" },
+    { "src": "/media/photos/anneau/errare-humanum-est.jpg", "titre": "Errare humanum est" },
+    { "src": "/media/photos/anneau/eveil-feline.jpg", "titre": "Eveil féline" },
+    { "src": "/media/photos/anneau/leve-de-lune.jpg", "titre": "Levé de lune" },
+    { "src": "/media/photos/anneau/my-dragon.jpg", "titre": "My dragon" },
+    { "src": "/media/photos/anneau/priere-de-l-innoncence.jpg", "titre": "Prière de l'innoncence" },
+    { "src": "/media/photos/anneau/purple-hase.jpg", "titre": "Purple Hase" },
+    { "src": "/media/photos/anneau/seconde-peau.jpg", "titre": "Seconde peau" },
+    { "src": "/media/photos/anneau/sophie.jpg", "titre": "Sophie" },
+    { "src": "/media/photos/anneau/soufle-d-eternite.jpg", "titre": "Soufle d'éternité" }
+  ]
+}

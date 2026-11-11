@@ -93,6 +93,37 @@
             <p class="carrousel__compteur" aria-hidden="true"></p>
             <noscript><p class="galerie-vide">Pour voir les toiles, merci d’activer JavaScript dans votre navigateur.</p></noscript>
           </div>
+
+          <h2 class="titre-section" id="titre-hors-vente">Œuvres non disponibles à la vente</h2>
+          <p class="volumes-note">Ces créations ne sont pas à vendre : elles donnent une idée d’autres travaux.</p>
+
+          <h3 class="titre-sous" id="titre-cube">Le cube</h3>
+          <!-- Cube 3D alimenté par media/photos/cube/photos.json (6 faces, photos mélangées à chaque visite). -->
+          <div class="volume volume--cube" data-cube data-source="/media/photos/cube/photos.json" role="region" aria-roledescription="cube 3D" aria-labelledby="titre-cube">
+            <div class="volume__scene" tabindex="0" aria-label="Cube 3D : faire tourner avec la souris, le doigt ou les flèches du clavier">
+              <div class="cube"></div>
+            </div>
+            <div class="volume__commandes">
+              <button type="button" class="volume__bouton volume__bouton--prec" aria-label="Face précédente"></button>
+              <p class="volume__legende" role="status">Chargement du cube…</p>
+              <button type="button" class="volume__bouton volume__bouton--suiv" aria-label="Face suivante"></button>
+            </div>
+            <noscript><p class="galerie-vide">Pour voir le cube, merci d’activer JavaScript dans votre navigateur.</p></noscript>
+          </div>
+
+          <h3 class="titre-sous" id="titre-anneau">L’anneau</h3>
+          <!-- Anneau 3D alimenté par media/photos/anneau/photos.json (un panneau par photo, photos mélangées à chaque visite). -->
+          <div class="volume volume--anneau" data-anneau data-source="/media/photos/anneau/photos.json" role="region" aria-roledescription="anneau 3D" aria-labelledby="titre-anneau">
+            <div class="volume__scene" tabindex="0" aria-label="Anneau 3D : faire tourner avec la souris, le doigt ou les flèches du clavier">
+              <div class="anneau"></div>
+            </div>
+            <div class="volume__commandes">
+              <button type="button" class="volume__bouton volume__bouton--prec" aria-label="Œuvre précédente"></button>
+              <p class="volume__legende" role="status">Chargement de l’anneau…</p>
+              <button type="button" class="volume__bouton volume__bouton--suiv" aria-label="Œuvre suivante"></button>
+            </div>
+            <noscript><p class="galerie-vide">Pour voir l’anneau, merci d’activer JavaScript dans votre navigateur.</p></noscript>
+          </div>
         </div>
       </section>
     </main>
@@ -125,5 +156,6 @@
 
   <script src="/assets/js/main.js?v=2" defer></script>
   <script src="/assets/js/carrousel.js?v=2" defer></script>
+  <script src="/assets/js/volumes.js?v=1" defer></script>
 </body>
 </html>

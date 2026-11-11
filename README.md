@@ -67,3 +67,12 @@ sitemap.xml  robots.txt       Référencement
 - `media/videos/` : vidéos au format **MP4 (H.264 + son AAC)**, 720p, quelques minutes au plus. GitHub refuse les fichiers de plus de 100 Mo : pour des vidéos plus longues, passer par un hébergeur vidéo.
 - Noms de fichiers sans accents ni espaces (`presentation-galerie.mp4`).
 - Une vidéo s'ajoute en copiant le bloc `<figure class="media-video">` de `galerie/index.html`.
+
+## Cube et anneau 3D (œuvres hors vente)
+
+Deux volumes 3D sous le carrousel de la page Galerie, dans la section « Œuvres non disponibles à la vente » :
+
+- **Le cube** (`media/photos/cube/`) : toujours 6 faces. Avec plus de 6 photos, 6 sont tirées au hasard à chaque visite ; avec moins de 6, les photos sont répétées. Il tourne tout seul d'une face à l'autre (avant, droite, arrière, gauche, dessus, dessous), s'arrête au survol, se fait tourner à la souris ou au doigt (horizontalement sur mobile, pour garder le défilement de la page), ou avec les boutons et les flèches du clavier.
+- **L'anneau** (`media/photos/anneau/`) : un panneau par photo, quel que soit leur nombre (3 à 24 conseillé). Rotation lente continue, pause au survol, glisser à la souris ou au doigt avec inertie, boutons et flèches du clavier.
+- Pour ajouter des œuvres : glisser les photos sur **`Optimiser-cube.bat`** ou **`Optimiser-anneau.bat`**, puis envoyer sur GitHub. Les titres se modifient dans `titres.json` du dossier concerné. Pas de fiche prix pour ces deux volumes.
+- Si le visiteur a demandé « moins de mouvement » dans son système, la rotation automatique est coupée (les boutons restent).

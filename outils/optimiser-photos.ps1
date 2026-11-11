@@ -14,14 +14,20 @@
 #
 # Fichier volontairement en ASCII : PowerShell 5.1 lit mal l'UTF-8 sans BOM.
 
-param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Chemins)
+[CmdletBinding(PositionalBinding = $false)]
+param(
+  [ValidateSet('toiles', 'cube', 'anneau')][string]$Galerie = 'toiles',
+  [Parameter(ValueFromRemainingArguments = $true)][string[]]$Chemins
+)
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 
-$MaxPx   = 1800
+# toiles : carrousel (1800 px, avec fiches d'oeuvre) ; cube et anneau : volumes 3D (1000 px suffisent)
+$MaxPx   = $(if ($Galerie -eq 'toiles') { 1800 } else { 1000 })
 $Qualite = 82
 $repo    = Split-Path -Parent $PSScriptRoot
-$dest    = Join-Path $repo 'media\photos\toiles'
+$dest    = Join-Path $repo ('media\photos\' + $Galerie)
+$avecFiches = ($Galerie -eq 'toiles')
 $utf8    = New-Object Text.UTF8Encoding($false)
 $exts    = '.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff', '.gif'
 $champs  = 'dimensions', 'matiere', 'peinture', 'prix'
@@ -110,21 +116,23 @@ $lignes = foreach ($k in $titres.Keys) { '  "' + (Esc $k) + '": "' + (Esc $titre
 # --- details.json : une fiche par oeuvre (cle = titre sans la vue). Valeurs existantes conservees.
 $detailsPath = Join-Path $dest 'details.json'
 $details = [ordered]@{}
-$dj = Read-Json $detailsPath
+$dj = $null; if ($avecFiches) { $dj = Read-Json $detailsPath }
 if ($dj) { foreach ($p in $dj.PSObject.Properties) { $fiche = [ordered]@{}; foreach ($c in $champs) { $v = $p.Value.$c; if ($null -eq $v) { $v = '' }; $fiche[$c] = [string]$v }; $details[$p.Name] = $fiche } }
 $titresOeuvres = @($titres.Values | ForEach-Object { (Split-Titre $_)[0] } | Select-Object -Unique)
-foreach ($t in $titresOeuvres) { if (-not $details.Contains($t)) { $fiche = [ordered]@{}; foreach ($c in $champs) { $fiche[$c] = '' }; $details[$t] = $fiche } }
-$blocs = foreach ($k in $details.Keys) {
-  $l = foreach ($c in $champs) { '    "' + $c + '": "' + (Esc $details[$k][$c]) + '"' }
-  '  "' + (Esc $k) + '": {' + "`n" + ($l -join ",`n") + "`n  }"
+if ($avecFiches) { foreach ($t in $titresOeuvres) { if (-not $details.Contains($t)) { $fiche = [ordered]@{}; foreach ($c in $champs) { $fiche[$c] = '' }; $details[$t] = $fiche } } }
+if ($avecFiches) {
+  $blocs = foreach ($k in $details.Keys) {
+    $l = foreach ($c in $champs) { '    "' + $c + '": "' + (Esc $details[$k][$c]) + '"' }
+    '  "' + (Esc $k) + '": {' + "`n" + ($l -join ",`n") + "`n  }"
+  }
+  [IO.File]::WriteAllText($detailsPath, "{`n" + ($blocs -join ",`n") + "`n}`n", $utf8)
 }
-[IO.File]::WriteAllText($detailsPath, "{`n" + ($blocs -join ",`n") + "`n}`n", $utf8)
 
 # --- photos.json (meme format que scripts/generate-gallery.mjs, execute par Vercel)
 $items = foreach ($p in (Get-ChildItem $dest -File | Where-Object { @('.jpg', '.jpeg', '.png', '.webp') -contains $_.Extension.ToLower() } | Sort-Object Name)) {
   $t = $titres[$p.Name]; if (-not $t) { $t = Get-Titre ([IO.Path]::GetFileNameWithoutExtension($p.Name)) }
   $parts = Split-Titre $t
-  $champsJson = @(('"src": "/media/photos/toiles/' + $p.Name + '"'), ('"titre": "' + (Esc $parts[0]) + '"'))
+  $champsJson = @(('"src": "/media/photos/' + $Galerie + '/' + $p.Name + '"'), ('"titre": "' + (Esc $parts[0]) + '"'))
   if ($parts[1]) { $champsJson += '"vue": "' + (Esc $parts[1]) + '"' }
   if ($details.Contains($parts[0])) { foreach ($c in $champs) { $v = $details[$parts[0]][$c]; if ($v) { $champsJson += '"' + $c + '": "' + (Esc $v) + '"' } } }
   '    { ' + ($champsJson -join ', ') + ' }'
