@@ -101,3 +101,25 @@ Mesures en place (aucune ne peut être absolue : tout ce qu'un navigateur affich
 - **Mentions** : © Nathart et clause de propriété intellectuelle dans les mentions légales.
 
 Limites : une capture d'écran, les outils de développement du navigateur ou la désactivation de JavaScript contournent les blocages du texte et des clics. Le filigrane est la seule protection qui suive l'image une fois copiée.
+
+## L'album, Lectures d'âme et Livre d'or
+
+**Menu** : `Galerie ▾` (Galerie, L'album, Lectures d'âme) · Événements · Livre d'or · Contact.
+
+### L'album (`/album/`) : un livre à pages tournantes
+- Écran large : double page ; téléphone : une page à la fois. On tourne les pages au doigt, en glissant à la souris, en cliquant sur un bord, avec les boutons ou les flèches du clavier. Code : `assets/js/livre.js`.
+- **Contenu** : `media/album/album.json`. Chaque œuvre = une page de texte (à gauche, les phrases « Je suis… ») + une page de photos (à droite, 1 à 4 photos). Format :
+  ```json
+  { "titre": "Titre de l'œuvre", "date": "mars 2026",
+    "texte": ["Je suis …", "Je suis …"],
+    "photos": [ { "fichier": "album-carnet-de-bord-03.jpg", "alt": "Description de la photo" } ] }
+  ```
+  Ajouter un bloc par œuvre, dans l'ordre du livre (ordre chronologique). `couverture` et `quatrieme` désignent les deux photos de la couverture et de la quatrième de couverture.
+- **Photos** : glisser les images sur **`Optimiser-album.bat`** (filigrane inclus, 1600 px max), puis ajouter leur nom de fichier dans `album.json`. Les textes trop longs sont réduits automatiquement pour tenir dans la page.
+- **Police des textes** : variable CSS `--police-album` (par défaut Cormorant Garamond). Pour utiliser une police d'écriture à la main (par exemple générée avec Calligraphr à partir de l'écriture de Nathart) : déposer le fichier `.ttf`/`.woff2` dans `assets/fonts/`, déclarer un `@font-face` dans `assets/css/style.css`, puis définir `--police-album`.
+
+### Lectures d'âme (`/lectures/`)
+Lectures d'œuvres générées par une IA, annoncées comme telles (encadré « En toute transparence ») avec la phrase de prudence (« blessure de l'âme à potentiellement guérir » : interprétation artistique, ni avis médical ni thérapie). Un modèle commenté de lecture se trouve dans `lectures/index.html`. Toute nouvelle lecture doit rester clairement signalée comme générée par IA.
+
+### Livre d'or (`/livre-d-or/`)
+Messages publiés à la main dans `livre-d-or/index.html` (modèle commenté `<blockquote class="message">`), uniquement avec l'accord de l'auteur, de préférence prénom ou initiales. Le formulaire envoie les messages par e-mail (Formspree) : ils ne sont **jamais publiés automatiquement**. Le principe est décrit dans la politique de confidentialité.

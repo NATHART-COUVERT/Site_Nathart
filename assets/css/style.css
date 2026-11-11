@@ -424,6 +424,80 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .galerie-photos a:hover img, .galerie-photos a:focus-visible img { transform: scale(1.03); }
 .galerie-vide { text-align: center; font-style: italic; color: var(--texte-doux); }
 
+/* ---------- L'album : livre à pages tournantes ---------- */
+.livre-scene { --page-l: min(86vw, 22rem); margin: 1.5rem auto 3.5rem; text-align: center; }
+@media (min-width: 700px) { .livre-scene { --page-l: clamp(10rem, 36vw, 23rem); } }
+.livre-zone { display: grid; place-items: center; overflow: hidden; padding: 1.5rem 0; }
+.livre {
+  position: relative; width: var(--page-l); height: calc(var(--page-l) * 1.3333);
+  perspective: calc(var(--page-l) * 5); touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none;
+  outline-offset: 8px; transition: transform 0.9s cubic-bezier(0.45, 0.05, 0.25, 1);
+}
+.livre--double { width: calc(var(--page-l) * 2); }
+.livre--double.est-ferme-avant { transform: translateX(calc(var(--page-l) / -2)); } /* livre fermé : la couverture est centrée */
+.livre.est-glisse { cursor: grabbing; }
+.livre__fond { position: absolute; top: 0; right: 0; width: 50%; height: 100%; z-index: 0; }
+.livre__fond .page { box-shadow: inset 0 0 40px rgba(120, 90, 50, 0.18), 0 6px 24px rgba(0, 0, 0, 0.6); }
+.feuille {
+  position: absolute; top: 0; height: 100%; transform-origin: left center; transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.45, 0.05, 0.25, 1); will-change: transform;
+}
+.livre--double .feuille { left: 50%; width: 50%; }
+.livre--seule .feuille { left: 0; width: 100%; }
+.feuille.est-tournee { transform: rotateY(-180deg); }
+.livre.est-glisse .feuille { transition: none; }
+.face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.face--arriere { transform: rotateY(180deg); }
+.face::after { content: ""; position: absolute; inset: 0; background: #000; opacity: var(--ombre, 0); pointer-events: none; }
+.face__ombre { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.face--avant .face__ombre { background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent 13%); }
+.face--arriere .face__ombre { background: linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent 13%); }
+
+.page {
+  position: absolute; inset: 0; display: flex; flex-direction: column; padding: 8% 9% 10%; overflow: hidden;
+  background: linear-gradient(135deg, #f6efde, #ecdfc4); color: #3a2e22;
+  font-family: var(--police-album, var(--police-texte)); box-shadow: inset 0 0 40px rgba(120, 90, 50, 0.18);
+}
+.page--couverture { padding: 0; background: #1a0f1f; }
+.page--couverture img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
+.page__titre { margin: 0 0 0.7rem; text-align: center; color: #7a5a2a; font-family: var(--police-titre); font-weight: 400; font-size: clamp(1.5rem, 3.2vw, 2.1rem); line-height: 1.15; }
+.page__texte { flex: 1; min-height: 0; overflow: hidden; font-size: 1.2rem; line-height: 1.35; }
+.page__texte p { margin: 0 0 0.6em; }
+.page__vide { margin-top: 28%; text-align: center; font-style: italic; color: #8a7458; }
+.page__numero { position: absolute; bottom: 3.5%; font-size: 0.85rem; color: #8a7458; }
+.page--texte .page__numero { left: 9%; }
+.page--photos .page__numero { right: 9%; }
+.page--photos { display: grid; gap: 4%; padding: 9%; align-content: center; grid-template-rows: minmax(0, 1fr); }
+.page--photos-2 { grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.page--photos-3, .page--photos-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.page--photos-3 .page__photo:last-of-type { grid-column: 1 / -1; }
+.page__photo { margin: 0; min-width: 0; min-height: 0; display: flex; padding: 3%; background: #fff; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35); }
+.page__photo img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; -webkit-user-drag: none; }
+.page__date { position: absolute; bottom: 3.5%; left: 0; right: 0; text-align: center; font-size: 0.9rem; font-style: italic; color: #8a7458; }
+.page--papier { align-items: center; justify-content: center; }
+.page__ornement { font-size: 2.2rem; color: #b79a62; }
+.livre__compteur { margin: 0.2rem 0 0; font-size: 1rem; color: var(--texte-doux); text-align: center; }
+.livre-scene:not(.est-pret) .volume__bouton { display: none; }
+
+/* ---------- Pages Lectures d'âme et Livre d'or ---------- */
+.encadre {
+  margin: 1.5rem auto; max-width: 42rem; padding: 1rem 1.3rem; text-align: left;
+  border: 1px solid rgba(201, 169, 110, 0.5); border-left-width: 4px; background: rgba(201, 169, 110, 0.07);
+}
+.encadre p { margin: 0 0 0.6em; font-size: 1.1rem; }
+.encadre p:last-child { margin-bottom: 0; }
+.encadre strong { color: var(--or); }
+.lecture { margin: 2.5rem auto; max-width: var(--largeur-texte); text-align: center; }
+.lecture__image { margin: 0 auto 1rem; max-width: 22rem; }
+.lecture h3 { color: var(--or); font-size: 1.7rem; margin: 0 0 0.3rem; }
+.lecture h4 { color: var(--or); font-size: 1.25rem; font-style: italic; margin: 1.3rem 0 0.2rem; }
+.lecture__ia { display: inline-block; margin: 0 0 0.8rem; padding: 0.1rem 0.7rem; border: 1px solid var(--or); border-radius: 1rem; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--or); }
+.messages { display: grid; gap: 1.5rem; max-width: var(--largeur-texte); margin: 2rem auto; }
+.message { margin: 0; padding: 1.1rem 1.4rem; border-left: 3px solid var(--or); background: rgba(201, 169, 110, 0.06); text-align: left; }
+.message p { margin: 0 0 0.5em; font-style: italic; }
+.message footer { color: var(--or); font-size: 1rem; }
+@media (min-width: 981px) and (max-width: 1180px) { .nav a, .nav__sous-bouton { letter-spacing: 0.2em; } }
+
 /* ---------- Formulaire de contact ---------- */
 .formulaire { width: min(100%, 40rem); margin: 2rem auto 0; display: grid; gap: 1.25rem; }
 .formulaire__rangee { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }

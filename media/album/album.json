@@ -1,0 +1,20 @@
+{
+  "titre": "Carnet de bord",
+  "couverture": "album-carnet-de-bord-01.jpg",
+  "couvertureAlt": "Couverture du carnet de bord : un cuir violet orné de filigranes argentés, avec une rose dorée à cœur de cristal posée en diagonale.",
+  "quatrieme": "album-carnet-de-bord-02.jpg",
+  "quatriemeAlt": "Quatrième de couverture du carnet de bord : les mêmes filigranes argentés sur fond violet, avec les deux fermoirs métalliques.",
+  "oeuvres": [
+    {
+      "titre": "Première page",
+      "date": "",
+      "texte": [],
+      "photos": [
+        {
+          "fichier": "album-carnet-de-bord-03.jpg",
+          "alt": "Première page du carnet : une rose rose dessinée, une phrase écrite à la main le long de la tige et la signature « Nath »."
+        }
+      ]
+    }
+  ]
+}

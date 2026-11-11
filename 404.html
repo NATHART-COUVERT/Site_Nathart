@@ -58,8 +58,19 @@
         </ul>
       </li>
       <li><a href="/epigenetique/">Épigénétique</a></li>
-      <li><a href="/galerie/">Galerie</a></li>
+      <li class="nav__item--sous">
+        <div class="nav__parent">
+          <a href="/galerie/">Galerie</a>
+          <button class="nav__sous-bouton" type="button" aria-expanded="false" aria-controls="sous-menu-galerie"><span class="visuellement-cache">Afficher les pages de la galerie</span></button>
+        </div>
+        <ul class="nav__sous" id="sous-menu-galerie">
+          <li><a href="/galerie/">Galerie</a></li>
+          <li><a href="/album/">L’album</a></li>
+          <li><a href="/lectures/">Lectures d’âme</a></li>
+        </ul>
+      </li>
       <li><a href="/evenements/">Événements</a></li>
+      <li><a href="/livre-d-or/">Livre d’or</a></li>
       <li><a href="/contact/">Contact</a></li>
     </ul>
   </nav>
