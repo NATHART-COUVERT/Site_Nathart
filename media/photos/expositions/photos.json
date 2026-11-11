@@ -1,0 +1,16 @@
+{
+  "generated": "local",
+  "photos": [
+    { "src": "/media/photos/expositions/2021-affiche.jpg?v=8397d50d51", "titre": "2021 affiche" },
+    { "src": "/media/photos/expositions/2021-estrade.jpg?v=1a1fb6c86c", "titre": "2021 estrade" },
+    { "src": "/media/photos/expositions/2021-rose.jpg?v=4ca4705c4f", "titre": "2021 rose" },
+    { "src": "/media/photos/expositions/2021-salle.jpg?v=9a5db347e4", "titre": "2021 salle" },
+    { "src": "/media/photos/expositions/2022-presse-book.jpg?v=35f55ae0ac", "titre": "2022 presse book" },
+    { "src": "/media/photos/expositions/2022-salle.jpg?v=9fa06e1378", "titre": "2022 salle" },
+    { "src": "/media/photos/expositions/2023-affiche.jpg?v=d34bb8290a", "titre": "2023 affiche" },
+    { "src": "/media/photos/expositions/2023-deco.jpg?v=aa5e494bc5", "titre": "2023 deco" },
+    { "src": "/media/photos/expositions/2023-fermeture-des-portes.jpg?v=be201b25af", "titre": "2023 fermeture des portes" },
+    { "src": "/media/photos/expositions/2023-mise-en-place.jpg?v=f0b216090a", "titre": "2023 mise en place" },
+    { "src": "/media/photos/expositions/2023-peindre-sur-place.jpg?v=f2d9f2eaab", "titre": "2023 peindre sur place" }
+  ]
+}

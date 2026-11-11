@@ -290,6 +290,11 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 /* ---------- Presse / événements ---------- */
 .galerie-presse { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0 2.5rem; }
 .galerie-presse a { display: block; }
+.titre-expo { color: var(--or-clair); font-size: 1.6rem; text-align: center; margin: 2rem 0 0.8rem; }
+.galerie-expo { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.2rem; align-items: start; margin: 0 0 2rem; }
+.galerie-expo figure { margin: 0; }
+.galerie-expo img { width: 100%; height: auto; border: 1px solid rgba(201, 169, 110, 0.3); }
+.galerie-expo figcaption { margin-top: 0.4rem; font-size: 1.05rem; font-style: italic; text-align: center; color: var(--texte-doux); }
 .galerie-presse img { width: 100%; border: 1px solid rgba(201, 169, 110, 0.3); }
 @media (max-width: 700px) { .galerie-presse { grid-template-columns: 1fr; } }
 
