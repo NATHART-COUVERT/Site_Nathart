@@ -120,7 +120,10 @@
       if (c.getAttribute("data-ajuste") || !c.clientHeight) return;   /* déjà réglée, ou page masquée (réglée quand elle apparaît) */
       var taille = 1.5;
       c.style.fontSize = taille + "rem";
-      while (c.scrollHeight > c.clientHeight + 1 && taille > 1.0) { taille -= 0.04; c.style.fontSize = taille + "rem"; }
+      c.style.overflowY = "hidden";
+      while (c.scrollHeight > c.clientHeight + 1 && taille > 0.9) { taille -= 0.04; c.style.fontSize = taille + "rem"; }
+      /* sécurité : si malgré tout le texte déborde, la page devient défilante (rien ne reste caché) */
+      if (c.scrollHeight > c.clientHeight + 1) c.style.overflowY = "auto";
       c.setAttribute("data-ajuste", "1");
     });
   }
@@ -249,12 +252,13 @@
     if (!modeChange && Math.abs(nouveauBudget - budgetCourant) < budgetCourant * 0.2) return;
     var dRef = double ? (t === 0 ? -1 : 2 * t - 1) : t;
     var fRef = faces[Math.max(0, Math.min(faces.length - 1, dRef))];
+    if (double && !(fRef && fRef.oeuvre)) fRef = faces[Math.min(faces.length - 1, 2 * t)];   /* page de gauche vierge : on prend celle de droite */
     var n = fRef && fRef.oeuvre ? fRef.oeuvre.n : (t === 0 ? -1 : 9999);
     batirFaces(large.matches);
     var idx = 0;
     if (n === -1) idx = 0;
     else if (n === 9999) idx = faces.length - 1;
-    else for (var i = 0; i < faces.length; i++) { if (faces[i].type === "texte" && faces[i].oeuvre.n === n) { idx = i; break; } }
+    else for (var i = 0; i < faces.length; i++) { if (faces[i].oeuvre && faces[i].oeuvre.n === n) { idx = i; break; } }
     t = large.matches ? Math.ceil(idx / 2) : idx;
     construire();
   }
@@ -280,7 +284,7 @@
   function budget(modeDouble) {
     var l = livre.offsetWidth || 400;
     var W = livre.classList.contains("livre--double") ? l / 2 : l;   /* largeur d'une page */
-    var c = Math.floor(0.82 * W * (1.0933 * W - 100) / 150);
+    var c = Math.floor(0.82 * W * (1.0933 * W - 100) / 175);
     return Math.max(260, Math.min(2200, c));
   }
   /* découpe un texte en pages de "max" caractères (coupe entre les phrases) ; un texte qui tient reste sur une seule page */
@@ -326,12 +330,12 @@
       });
       var oeuvre = { n: n, titre: o.titre || "", date: o.date || "", note: o.note || "", photos: photos };
       var pages = o.pages && o.pages.length ? o.pages : paginer(o.texte || [], budgetCourant - (o.note ? 60 : 0));
+      /* la photo vient toujours en premier (page de gauche en double page), le texte juste après */
       pages.forEach(function (paras, k) {
+        if (k === 0) faces.push({ type: "photos", oeuvre: oeuvre });
+        else if (modeDouble) faces.push({ type: "papier" });
         faces.push({ type: "texte", oeuvre: oeuvre, paras: paras, suite: k > 0, derniere: k === pages.length - 1 });
-        if (modeDouble) faces.push(k === 0 ? { type: "photos", oeuvre: oeuvre } : { type: "papier" });
       });
-      /* page seule : tout le texte, puis la photo de l'œuvre */
-      if (!modeDouble) faces.push({ type: "photos", oeuvre: oeuvre });
     });
     faces.push({ type: "papier" });
     faces.push({ type: "quatrieme", img: url(donnees.quatrieme), alt: donnees.quatriemeAlt });
@@ -346,9 +350,17 @@
     racine.setAttribute("data-titre", donnees.titre || "Carnet de bord");
     source = { donnees: donnees, url: url };
     racine.classList.add("est-pret");
-    double = large.matches;
-    batirFaces(double);
-    construire();
+    /* on attend l'écriture manuscrite avant de mesurer les textes (sinon les pages sont mal calculées) */
+    var pret = false;
+    function bati() {
+      if (pret) return; pret = true;
+      double = large.matches;
+      batirFaces(double);
+      construire();
+    }
+    if (document.fonts && document.fonts.load) {
+      Promise.race([document.fonts.load('1.5rem "Dancing Script"'), new Promise(function (r) { setTimeout(r, 2500); })]).then(bati, bati);
+    } else { bati(); }
   }
 
   var demarre = false;
