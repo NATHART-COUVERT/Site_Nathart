@@ -14,7 +14,7 @@
   var suiv = racine.querySelector(".volume__bouton--suiv");
   var legende = racine.querySelector(".volume__legende");
   var compteur = racine.querySelector(".livre__compteur");
-  var large = window.matchMedia("(min-width: 700px)");
+  var large = window.matchMedia("(min-width: 1100px)");  /* double page seulement sur grand écran ; sinon une grande page à la fois */
   var reduit = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
   var faces = [];       /* toutes les pages dans l'ordre : couverture, (texte, photos)×n, papier, quatrième */
@@ -117,9 +117,11 @@
   /* réduit la taille du texte jusqu'à ce qu'il tienne dans la page */
   function ajuster() {
     livre.querySelectorAll(".page__texte").forEach(function (c) {
+      if (c.getAttribute("data-ajuste") || !c.clientHeight) return;   /* déjà réglée, ou page masquée (réglée quand elle apparaît) */
       var taille = 1.5;
       c.style.fontSize = taille + "rem";
-      while (c.scrollHeight > c.clientHeight + 1 && taille > 1.05) { taille -= 0.04; c.style.fontSize = taille + "rem"; }
+      while (c.scrollHeight > c.clientHeight + 1 && taille > 1.0) { taille -= 0.04; c.style.fontSize = taille + "rem"; }
+      c.setAttribute("data-ajuste", "1");
     });
   }
 
@@ -137,6 +139,7 @@
       /* seules les feuilles proches de la page courante sont affichées : moins de couches 3D, pas de pages qui se chevauchent */
       f.style.display = Math.abs(j - t) <= 3 ? "" : "none";
     });
+    ajuster();
   }
 
   function afficher() {
@@ -237,14 +240,34 @@
   livre.addEventListener("pointercancel", fin);
 
   /* changement d'écran (rotation, redimensionnement) : on garde la page courante */
+  /* le découpage du texte dépend de la taille des pages : on reconstruit les pages si le mode ou la taille change nettement,
+     en restant sur la même œuvre */
   function changerMode() {
-    if (!faces.length || large.matches === double) return;
-    var visible = double ? (t === 0 ? 0 : 2 * t) : t;
-    t = large.matches ? Math.ceil(visible / 2) : visible;
+    if (!faces.length || !source) return;
+    var modeChange = large.matches !== double;
+    var nouveauBudget = budget(large.matches);
+    if (!modeChange && Math.abs(nouveauBudget - budgetCourant) < budgetCourant * 0.2) return;
+    var dRef = double ? (t === 0 ? -1 : 2 * t - 1) : t;
+    var fRef = faces[Math.max(0, Math.min(faces.length - 1, dRef))];
+    var n = fRef && fRef.oeuvre ? fRef.oeuvre.n : (t === 0 ? -1 : 9999);
+    batirFaces(large.matches);
+    var idx = 0;
+    if (n === -1) idx = 0;
+    else if (n === 9999) idx = faces.length - 1;
+    else for (var i = 0; i < faces.length; i++) { if (faces[i].type === "texte" && faces[i].oeuvre.n === n) { idx = i; break; } }
+    t = large.matches ? Math.ceil(idx / 2) : idx;
     construire();
   }
   if (large.addEventListener) large.addEventListener("change", changerMode); else large.addListener(changerMode);
-  window.addEventListener("resize", function () { if (faces.length) ajuster(); });
+  var minuterie = null;
+  window.addEventListener("resize", function () {
+    if (!faces.length) return;
+    clearTimeout(minuterie);
+    minuterie = setTimeout(function () {
+      livre.querySelectorAll(".page__texte").forEach(function (c) { c.removeAttribute("data-ajuste"); });
+      changerMode(); ajuster();
+    }, 200);
+  });
 
   /* ---------- chargement ---------- */
   function charger(url) {
@@ -253,21 +276,29 @@
       return r.json();
     });
   }
-  /* découpe un texte en pages d'environ 430 caractères (coupe entre les phrases ; les textes courts restent sur une page) */
-  var CARACTERES_PAR_PAGE = 430;
-  function paginer(paras) {
+  /* nombre de caractères qui tiennent sur une page, d'après sa taille réelle (écriture réduite au minimum) */
+  function budget(modeDouble) {
+    var l = livre.offsetWidth || 400;
+    var W = livre.classList.contains("livre--double") ? l / 2 : l;   /* largeur d'une page */
+    var c = Math.floor(0.82 * W * (1.0933 * W - 100) / 150);
+    return Math.max(260, Math.min(2200, c));
+  }
+  /* découpe un texte en pages de "max" caractères (coupe entre les phrases) ; un texte qui tient reste sur une seule page */
+  function paginer(paras, max) {
+    var total = paras.join(" ").length;
+    if (total <= max) return [paras.slice()];
     var pages = [], page = [], taille = 0;
     function fermer() { if (page.length) { pages.push(page); page = []; taille = 0; } }
     paras.forEach(function (para) {
-      var morceaux = para.length <= CARACTERES_PAR_PAGE ? [para] : (para.match(/[^.!?…]+[.!?…»]*\s*/g) || [para]);
+      var morceaux = para.length <= max ? [para] : (para.match(/[^.!?…]+[.!?…»]*\s*/g) || [para]);
       var courant = "";
-      morceaux.forEach(function (m, i) {
-        if (taille + courant.length + m.length > CARACTERES_PAR_PAGE && (courant || page.length)) {
+      morceaux.forEach(function (m) {
+        if (taille + courant.length + m.length > max && (courant || page.length)) {
           if (courant) { page.push(courant.trim()); courant = ""; }
           fermer();
         }
         courant += m;
-        if (para.length <= CARACTERES_PAR_PAGE) { page.push(courant.trim()); taille += courant.length; courant = ""; }
+        if (para.length <= max) { page.push(courant.trim()); taille += courant.length; courant = ""; }
       });
       if (courant) { page.push(courant.trim()); taille += courant.length; }
     });
@@ -279,6 +310,32 @@
     }
     return pages.length ? pages : [[]];
   }
+
+  var source = null;       /* données de l'album et fonction d'adresse des images */
+  var budgetCourant = 0;
+  /* construit la liste des pages : couverture, (texte, photo) par œuvre, papier, quatrième.
+     Si un texte déborde d'une page, la suite passe sur une page de plus, face à une page vierge (la photo n'est pas répétée). */
+  function batirFaces(modeDouble) {
+    var donnees = source.donnees, url = source.url;
+    budgetCourant = budget(modeDouble);
+    faces = [];
+    faces.push({ type: "couverture", img: url(donnees.couverture), alt: donnees.couvertureAlt });
+    (donnees.oeuvres || []).forEach(function (o, n) {
+      var photos = (o.photos || []).map(function (p) {
+        return typeof p === "string" ? { src: url(p) } : { src: url(p.fichier), alt: p.alt };
+      });
+      var oeuvre = { n: n, titre: o.titre || "", date: o.date || "", note: o.note || "", photos: photos };
+      var pages = o.pages && o.pages.length ? o.pages : paginer(o.texte || [], budgetCourant - (o.note ? 60 : 0));
+      pages.forEach(function (paras, k) {
+        faces.push({ type: "texte", oeuvre: oeuvre, paras: paras, suite: k > 0, derniere: k === pages.length - 1 });
+        if (modeDouble) faces.push(k === 0 ? { type: "photos", oeuvre: oeuvre } : { type: "papier" });
+      });
+      /* page seule : tout le texte, puis la photo de l'œuvre */
+      if (!modeDouble) faces.push({ type: "photos", oeuvre: oeuvre });
+    });
+    faces.push({ type: "papier" });
+    faces.push({ type: "quatrieme", img: url(donnees.quatrieme), alt: donnees.quatriemeAlt });
+  }
   function initialiser(donnees, liste) {
     var adresses = {};
     (liste.photos || []).forEach(function (p) {
@@ -287,22 +344,10 @@
     });
     function url(nom) { return adresses[nom] || ("/media/photos/album/" + nom); }
     racine.setAttribute("data-titre", donnees.titre || "Carnet de bord");
-    faces.push({ type: "couverture", img: url(donnees.couverture), alt: donnees.couvertureAlt });
-    (donnees.oeuvres || []).forEach(function (o) {
-      var photos = (o.photos || []).map(function (p) {
-        return typeof p === "string" ? { src: url(p) } : { src: url(p.fichier), alt: p.alt };
-      });
-      var oeuvre = { titre: o.titre || "", date: o.date || "", note: o.note || "", photos: photos };
-      /* "pages" : le texte découpé en plusieurs pages (liste de listes de paragraphes) ; sinon "texte" tient sur une page */
-      var pages = o.pages && o.pages.length ? o.pages : paginer(o.texte || []);
-      pages.forEach(function (paras, k) {
-        faces.push({ type: "texte", oeuvre: oeuvre, paras: paras, suite: k > 0, derniere: k === pages.length - 1 });
-        faces.push({ type: "photos", oeuvre: oeuvre });
-      });
-    });
-    faces.push({ type: "papier" });
-    faces.push({ type: "quatrieme", img: url(donnees.quatrieme), alt: donnees.quatriemeAlt });
+    source = { donnees: donnees, url: url };
     racine.classList.add("est-pret");
+    double = large.matches;
+    batirFaces(double);
     construire();
   }
 

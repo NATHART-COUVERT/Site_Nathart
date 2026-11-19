@@ -437,8 +437,8 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .galerie-vide { text-align: center; font-style: italic; color: var(--texte-doux); }
 
 /* ---------- L'album : livre à pages tournantes ---------- */
-.livre-scene { --page-l: min(86vw, 22rem); margin: 1.5rem auto 3.5rem; text-align: center; }
-@media (min-width: 700px) { .livre-scene { --page-l: clamp(10rem, 36vw, 26rem); } }
+.livre-scene { --page-l: min(88vw, 34rem); margin: 1.5rem auto 3.5rem; text-align: center; }
+@media (min-width: 1100px) { .livre-scene { --page-l: clamp(14rem, 41vw, 34rem); } }
 .livre-zone { display: grid; place-items: center; overflow: hidden; padding: 3rem 0; }
 .livre {
   position: relative; width: var(--page-l); height: calc(var(--page-l) * 1.3333);
@@ -481,6 +481,9 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .page--texte .page__numero { left: 9%; }
 .page--photos .page__numero { right: 9%; }
 .page--photos { display: grid; gap: 4%; padding: 9%; align-content: center; grid-template-rows: minmax(0, 1fr); }
+.page--photos-1 { grid-template-rows: auto; align-content: center; }
+.page--photos-1 .page__photo { display: block; align-self: center; }
+.page--photos-1 .page__photo img { display: block; width: 100%; height: auto; max-height: calc(var(--page-l) * 1.0); object-fit: contain; }
 .page--photos-2 { grid-template-rows: repeat(2, minmax(0, 1fr)); }
 .page--photos-3, .page--photos-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); }
 .page--photos-3 .page__photo:last-of-type { grid-column: 1 / -1; }
@@ -510,10 +513,16 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .lecture details[open] summary { margin-bottom: 0.8rem; }
 .lecture__fermer, .lecture details[open] .lecture__ouvrir { display: none; }
 .lecture details[open] .lecture__fermer { display: inline; }
-.lecture__corps { font-family: var(--police-album); font-size: 1.45rem; line-height: 1.4; }
+.lecture__image--large { max-width: 38rem; }
+.lecture__moi { margin: 0.5rem auto 1rem; padding: 1rem 1.3rem; text-align: left; border-left: 3px solid var(--or); background: rgba(201, 169, 110, 0.06); font-family: var(--police-album); font-size: 1.5rem; line-height: 1.4; }
+.lecture__moi p { margin: 0 0 0.6em; }
+.lecture__moi .lecture__etiquette { font-family: var(--police-texte); font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--or); }
+.lecture__moi .lecture__note { font-size: 1.15rem; opacity: 0.85; }
+.lecture__moi .galerie-vide { font-family: var(--police-texte); font-size: 1.1rem; margin: 0.4rem 0; }
+.lecture__corps { font-family: var(--police-texte); font-size: 1.15rem; line-height: 1.55; color: var(--texte-doux); }
 .lecture__corps p, .lecture__corps ul { margin: 0 0 0.7em; }
 .lecture__corps li { margin-bottom: 0.3em; }
-.lecture .lecture__corps h4 { font-family: var(--police-album); font-style: normal; font-weight: 700; font-size: 1.7rem; }
+.lecture .lecture__corps h4 { font-size: 1.2rem; }
 .lecture h4 { color: var(--or); font-size: 1.25rem; font-style: italic; margin: 1.3rem 0 0.2rem; }
 .lecture__ia { margin: 1rem 0 0; font-size: 0.95rem; font-style: italic; color: var(--texte-doux); opacity: 0.8; text-align: center; }
 .commentaire { margin: 1.5rem auto 0; max-width: var(--largeur-texte); padding: 1rem 1.3rem; text-align: left; border-left: 3px solid var(--or); background: rgba(201, 169, 110, 0.06); }

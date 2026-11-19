@@ -130,3 +130,6 @@ Messages publiés à la main dans `livre-d-or/index.html` (modèle commenté `<b
 - **Lectures d'ame** : page `lectures/index.html`, une `<article class="lecture">` par oeuvre (modele deja en place). Photos propres a cette page : `media/photos/lectures/` (outil : `optimiser-photos.ps1 -Galerie lectures`). Les lectures sont toujours presentees comme generees par IA.
 
 - **Commentaires d'acquereurs** : dans chaque lecture de lectures/index.html, un bloc <blockquote class="commentaire"> est pret, en commentaire HTML. Pour publier : retirer <!-- et -->, remplacer le texte et la signature (avec l'accord de la personne).
+
+- **Album (v2)** : une double page par oeuvre (texte a gauche, photo ajustee a droite) sur ecran >= 1100 px ; en dessous (tablette, telephone), une grande page a la fois (texte puis photo). Le texte est decoupe en pages seulement s'il ne tient pas, selon la taille reelle des pages ; la photo n'est jamais repetee.
+- **Lectures d'ame (v2)** : mes textes Je suis (3 toiles) + bouton Voir l'idee d'une analyse par IA (exemple, police differente). Pas d'analyse IA pour Synergie, Harmonie, Sophie, Arbre de vie (choix de Nathalie : seulement les oeuvres qui racontent son histoire).

@@ -1,62 +1,62 @@
 {
   "Bisou magique": {
-    "dimensions": "",
-    "matiere": "",
-    "peinture": "",
-    "prix": ""
+    "dimensions": "40 x 40 cm",
+    "matiere": "Toile coton",
+    "peinture": "Cobra (huile ou eau)",
+    "prix": "200 €"
   },
   "Candy Pink Lady": {
-    "dimensions": "",
-    "matiere": "",
-    "peinture": "",
-    "prix": ""
+    "dimensions": "80 x 60 cm",
+    "matiere": "Toile coton",
+    "peinture": "Cobra (huile ou eau)",
+    "prix": "520 €"
   },
-  "Début de la fin": {
-    "dimensions": "",
-    "matiere": "",
-    "peinture": "",
-    "prix": ""
+  "Et Si…": {
+    "dimensions": "24 x 33 cm",
+    "matiere": "Toile cartonnée",
+    "peinture": "Huile",
+    "prix": "80 €"
   },
-  "Orné d’une folie": {
-    "dimensions": "",
-    "matiere": "",
-    "peinture": "",
-    "prix": ""
+  "L’un contre l’autre": {
+    "dimensions": "4 toiles",
+    "matiere": "Toile cartonnée",
+    "peinture": "Huile",
+    "prix": "650 €"
+  },
+  "Ornée d’une folie": {
+    "dimensions": "120 x 40 cm",
+    "matiere": "Toile coton",
+    "peinture": "Cobra (huile ou eau)",
+    "prix": "540 €"
+  },
+  "Plume Peintresse": {
+    "dimensions": "24 x 33 cm",
+    "matiere": "Toile cartonnée",
+    "peinture": "Huile",
+    "prix": "80 €"
+  },
+  "Poisson d’Air": {
+    "dimensions": "80 x 40 cm",
+    "matiere": "Toile coton",
+    "peinture": "Cobra (huile ou eau)",
+    "prix": "350 €"
+  },
+  "Sortie de Bain": {
+    "dimensions": "24 x 33 cm",
+    "matiere": "Toile cartonnée",
+    "peinture": "Huile",
+    "prix": "80 €"
   },
   "The Word of Vaiana": {
-    "dimensions": "",
-    "matiere": "",
-    "peinture": "",
-    "prix": ""
+    "dimensions": "80 x 80 cm",
+    "matiere": "Toile coton",
+    "peinture": "Cobra (huile ou eau)",
+    "prix": "680 €"
   },
-  "Comme un poisson dans sa bulle": {
-    "dimensions": "",
-    "matiere": "",
-    "peinture": "",
-    "prix": ""
-  },
-  "Laissé aller": {
-    "dimensions": "",
-    "matiere": "",
-    "peinture": "",
-    "prix": ""
-  },
-  "Plume acrylique": {
-    "dimensions": "",
-    "matiere": "",
-    "peinture": "",
-    "prix": ""
-  },
-  "Rose sur bois et résine": {
-    "dimensions": "",
-    "matiere": "",
-    "peinture": "",
-    "prix": ""
-  },
-  "Surprise à penser": {
-    "dimensions": "",
-    "matiere": "",
-    "peinture": "",
-    "prix": ""
+  "Une Ode à l’Amour": {
+    "dimensions": "80 x 80 cm",
+    "matiere": "Bois compressé",
+    "peinture": "Huile et résine",
+    "prix": "750 €"
   }
 }
