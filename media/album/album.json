@@ -51,6 +51,20 @@
       ]
     },
     {
+      "titre": "Une Ode à l’Amour",
+      "date": "",
+      "texte": [
+        "« Je suis » la prière de cette fillette dans son innocence si louable. « Je suis » la vérité de son cœur dans toute sa pureté, même si elle reste ni bonne à dire, ni bonne à entendre… « Je suis » les larmes contenues de cette douce bénédicité, qui ne sont que le reflet de moi-même. « Je suis » à l’image de ce que l’on a voulu que je sois, jusqu’à m’en oublier.",
+        "« Je suis » également de votre essence divine, cette âme d’enfant dont le temps lui enseigne de garder cette richesse. « Je suis » à prier notre mère à tous, de me donner de sa force, de son courage et de me prendre dans ses bras. « Je suis » à la dissolution de mon « moi-ego », ce moi pluralisé au gré de chacun. « Je suis » comme « envoûtée » par l’encens marquant votre présence céleste.",
+        "« Je suis » sur le chemin de ceux qui partageraient un morceau d’horizon en toute simplicité. « Je suis » la bulle d’air prête à vivre de mon propre amour, puisque la lumière ne vient que de soi-même.",
+        "« Je suis » enfin…",
+        "Merci"
+      ],
+      "photos": [
+        { "fichier": "une-ode-a-l-amour.jpg", "alt": "Une Ode à l’Amour : une fillette aux yeux clos, les mains jointes, penche la tête au-dessus d’une bulle irisée où se devine un visage de femme, avec son reflet dans l’eau noire." }
+      ]
+    },
+    {
       "titre": "Éveil féline",
       "date": "",
       "texte": [
@@ -116,7 +130,7 @@
         { "fichier": "ornee-d-une-folie-feerique.jpg", "alt": "Ornée d’une folie féerique : une silhouette de femme allongée en noir et blanc, sous une explosion de couleurs, avec Mickey." }
       ]
     },
-{
+    {
       "titre": "Bisou magique",
       "date": "",
       "texte": [
@@ -127,6 +141,19 @@
       ],
       "photos": [
         { "fichier": "bisou-magique.jpg", "alt": "Bisou magique : un portrait en gris et blanc d’une femme blonde aux lèvres rouges, embrassée sur la joue par Minnie." }
+      ]
+    },
+    {
+      "titre": "Synergie",
+      "date": "",
+      "texte": [
+        "« Je suis » à l’éveil de tout ce que nous offrent la nature et ses bienfaits. « Je suis » enchanteresse de rappeler un regard d’autrefois, où la végétation était respectée… « Je suis » enracinée à notre chère terre Gaïa, la gratifiant d’honneur pour sa force à transmuter les énergies en amour. « Je suis » attristée de constater ce que nous lui infligeons de par nos consommations…",
+        "« Je suis » également sensible aux êtres de lumière qui travaillent en son ventre de mère. « Je suis » charmée de leurs capacités à soulever les consciences en nous soignant autrement.",
+        "« Je suis » en prière pour qu’ils soient bénis d’être si présents pour nous. « Je suis » époustouflée de me rendre compte de combien le monde subtil est grandissime et grandiose… « Je suis » rayonnante de leur rendre grâce.",
+        "« Je suis » heureuse de voir que chaque peuple possède et partage un savoir ancestral trop souvent « charlatané » par méconnaissance… « Je suis » honorée de tout ce qu’il me reste à découvrir pour être moi en mon âme, puisque c’est le but ultime de vivre ici-bas : se réaliser…"
+      ],
+      "photos": [
+        { "fichier": "synergie.jpg", "alt": "Synergie : un visage de femme couvert de fleurs et de feuillages colorés, avec des papillons, peint sur du bois." }
       ]
     },
     {
@@ -141,19 +168,6 @@
       ],
       "photos": [
         { "fichier": "harmonie.jpg", "alt": "Harmonie : le visage d’une jeune femme à la peau brune, une grande fleur blanche à sa droite et un oiseau au-dessus du front, peints sur du bois brut." }
-      ]
-    },
-    {
-      "titre": "Synergie",
-      "date": "",
-      "texte": [
-        "« Je suis » à l’éveil de tout ce que nous offrent la nature et ses bienfaits. « Je suis » enchanteresse de rappeler un regard d’autrefois, où la végétation était respectée… « Je suis » enracinée à notre chère terre Gaïa, la gratifiant d’honneur pour sa force à transmuter les énergies en amour. « Je suis » attristée de constater ce que nous lui infligeons de par nos consommations…",
-        "« Je suis » également sensible aux êtres de lumière qui travaillent en son ventre de mère. « Je suis » charmée de leurs capacités à soulever les consciences en nous soignant autrement.",
-        "« Je suis » en prière pour qu’ils soient bénis d’être si présents pour nous. « Je suis » époustouflée de me rendre compte de combien le monde subtil est grandissime et grandiose… « Je suis » rayonnante de leur rendre grâce.",
-        "« Je suis » heureuse de voir que chaque peuple possède et partage un savoir ancestral trop souvent « charlatané » par méconnaissance… « Je suis » honorée de tout ce qu’il me reste à découvrir pour être moi en mon âme, puisque c’est le but ultime de vivre ici-bas : se réaliser…"
-      ],
-      "photos": [
-        { "fichier": "synergie.jpg", "alt": "Synergie : un visage de femme couvert de fleurs et de feuillages colorés, avec des papillons, peint sur du bois." }
       ]
     }
   ]
