@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" href="/assets/fonts/pinyon-script-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/cormorant-garamond-500.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/style.css?v=7">
+  <link rel="stylesheet" href="/assets/css/style.css?v=8">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -94,6 +94,7 @@
         </ul>
       </li>
       <li><a href="/contact/">Contact</a></li>
+      <li class="nav__cta"><a href="/galerie/#titre-toiles">Œuvres à acquérir</a></li>
     </ul>
   </nav>
     <main id="contenu">
@@ -104,98 +105,55 @@
             <h1 id="titre-accueil" class="titre-hero">Nathart</h1>
             <p class="hero-phrase">Bienvenue dans un espace où l’art, la conscience et le vivant dialoguent autrement.</p>
             <p class="hero-question">Et si Nathart révélait le guérisseur qui sommeille en vous&nbsp;?…</p>
-            <p class="hero-texte">À travers la peinture, l’écriture et l’exploration du sensible, Nathart est né d’un chemin de transformation intérieur.</p>
-            <p class="hero-texte">Ici, l’art dialogue avec les neurosciences, les symboles, la spiritualité, la création, les perceptions humaines et les possibilités qu’ouvre peu à peu l’intelligence artificielle.</p>
-            <p class="hero-texte">Ce lieu n’a pas été créé pour imposer des vérités, mais pour ouvrir des espaces de réflexion, d’émotion et de conscience.</p>
-            <p class="hero-devise">«&nbsp;Explorer les liens entre création, conscience, perception et transformation humaine.&nbsp;»</p>
+            <p class="hero-actions">
+              <a class="cta" href="/galerie/#titre-toiles">Découvrir les œuvres à acquérir</a>
+              <a class="cta cta--discret" href="/contact/">Me contacter</a>
+            </p>
           </div>
         </section>
+      </div>
 
-        <section id="apropos" class="section" aria-labelledby="titre-apropos">
-          <div class="colonne">
-            <h2 id="titre-apropos" class="titre-apropos">À propos de Nath</h2>
+      <section class="section section--sombre" aria-labelledby="titre-toiles">
+        <div class="conteneur">
+          <h2 id="titre-toiles" class="titre-section">Œuvres à acquérir</h2>
+          <!-- Même carrousel que la page Galerie (media/photos/toiles/photos.json). -->
+          <div class="carrousel" data-carrousel data-source="/media/photos/toiles/photos.json" role="region" aria-roledescription="carrousel" aria-labelledby="titre-toiles">
+            <div class="carrousel__cadre">
+              <ul class="carrousel__piste" tabindex="0" aria-label="Toiles : faire défiler avec le doigt, la souris ou les flèches du clavier"></ul>
+              <button type="button" class="carrousel__bouton carrousel__bouton--prec" aria-label="Toile précédente"></button>
+              <button type="button" class="carrousel__bouton carrousel__bouton--suiv" aria-label="Toile suivante"></button>
+            </div>
+            <p class="carrousel__legende" role="status">Chargement des toiles…</p>
+            <p class="carrousel__compteur" aria-hidden="true"></p>
+            <noscript><p class="galerie-vide">Pour voir les toiles, merci d’activer JavaScript dans votre navigateur.</p></noscript>
+          </div>
+          <p class="hero-actions"><a class="cta" href="/galerie/#titre-toiles">Voir toute la galerie</a></p>
+        </div>
+      </section>
+
+      <section id="apropos" class="section" aria-labelledby="titre-apropos">
+        <div class="colonne">
+          <h2 id="titre-apropos" class="titre-apropos">À propos de Nath</h2>
+          <div class="apropos-texte">
+            <p>Je crée comme je respire… entre ombre et lumière. Mon art, c’est mon langage quand les mots ne suffisent plus.</p>
+            <p>Je me dépose dans mes toiles. Mes blessures deviennent couleurs, mes élans deviennent formes.</p>
+          </div>
+          <details class="reference reference--suite">
+            <summary>Lire la suite</summary>
             <div class="apropos-texte">
-              <p>Je crée comme je respire… entre ombre et lumière. Mon art, c’est mon langage quand les mots ne suffisent plus.</p>
-              <p>Je me dépose dans mes toiles. Mes blessures deviennent couleurs, mes élans deviennent formes.</p>
               <p>J’aime profondément. Fort. Vrai. Et je ris aussi… souvent au milieu du chaos.</p>
               <p>Je partage… simplement. Comme on tend une lumière dans la nuit, sans savoir qui la verra.</p>
               <p>Une amie a vu ce que je ne voyais pas encore, elle m’a mis les pinceaux entre les doigts. Depuis, je n’ai plus arrêté.<br>Le Luxembourg Art Prize l’a remarqué. La presse aussi, parfois.</p>
               <p>Et si, quelque part, ça touche une âme… alors c’est que c’était juste.</p>
             </div>
-          </div>
-        </section>
-      </div>
-
-      <section id="epigenetique" class="section fond-arbre-voile" aria-label="Épigénétique">
-        <div class="colonne">
-        <h2 id="titre-epigenetique" class="titre-page">Épigénétique</h2>
-        <p class="citation">«&nbsp;Ce que nos ancêtres ont traversé vit encore en nous. Dans chaque toile, une main qui transforme cette mémoire.&nbsp;»</p>
-        <p class="accroche">Et si, de génération en génération, quelqu’un allumait la lumière&nbsp;?</p>
-
-        <h3 class="titre-section">L’Arbre de Vie</h3>
-        <p class="sous-titre-italique">Un fil qui traverse chaque toile</p>
-        <p>L’arbre plonge ses racines dans une double hélice. Ce n’est pas un hasard&nbsp;: ce que nous portons, nous l’avons reçu de ceux qui nous ont précédés, leurs forces, leurs blessures, leurs rêves.</p>
-        <p>Chaque feuille qui tombe en emporte un fragment, et nourrit la terre pour les arbres à venir.</p>
-
-        <h3 class="titre-sous">Ce qui relie tout</h3>
-        <p class="sous-titre-italique">Cinq portes, un même arbre</p>
-        <p>Chaque porte de ce site pose la même question&nbsp;: que faisons-nous de ce que nous avons reçu&nbsp;? L’art, le cerveau, les symboles, la quête de sens, la conscience&nbsp;: cinq branches, un seul arbre.</p>
-        <p class="citation">«&nbsp;Nous sommes les feuilles d’aujourd’hui d’un arbre très ancien.&nbsp;»</p>
-
-        <p class="surtitre">La clé scientifique</p>
-        <h3 class="titre-sous">Ce que l’épigénétique a mis en lumière</h3>
-        <p>Chez la souris, les chercheurs ont montré qu’un stress traumatique vécu très tôt laisse une empreinte biologique qui se transmet à la descendance. L’équipe d’Isabelle Mansuy, à Zurich, a découvert qu’une partie de cette mémoire voyage dans des petites molécules d’ARN portées par les spermatozoïdes.</p>
-        <p>Mais l’histoire ne s’arrête pas là&nbsp;: lorsque ces souris vivaient ensuite dans un environnement riche, stimulant et apaisant, les symptômes disparaissaient, et ils n’étaient plus transmis aux petits.</p>
-        <p>Ce qui a été transmis n’est pas une sentence.</p>
-        <details class="reference">
-          <summary>➔ Référence</summary>
-          <p>Gapp, K. et al. (2014), «&nbsp;Implication of sperm RNAs in transgenerational inheritance of the effects of early trauma in mice&nbsp;», <em>Nature Neuroscience</em>, 17(5). — Gapp, K. et al. (2016), «&nbsp;Potential of Environmental Enrichment to Prevent Transgenerational Effects of Paternal Trauma&nbsp;», <em>Neuropsychopharmacology</em>. — Mansuy, I.M., Université de Zurich / ETH Zürich.</p>
-        </details>
-        </div>
-      </section>
-
-      <section class="section section--degrade" aria-labelledby="titre-arbre">
-        <div class="colonne">
-          <h2 id="titre-arbre" class="visuellement-cache">L’arbre de vie, entrée vers les cinq univers</h2>
-          <p class="citation">«&nbsp;Et si… quelqu’un allumait la lumière&nbsp;?&nbsp;»</p>
-        <div class="arbre">
-          <img class="arbre__fond" src="/assets/img/arbre-epigenetique.jpg" width="1200" height="800" loading="lazy" alt="Arbre de vie doré dont les racines forment une double hélice d’ADN, avec le mot Épigénétique">
-          <div class="arbre__feuilles">
-            <a class="feuille feuille-1" href="/thematiques/#art" aria-label="Art&nbsp;: pays merveilleux de soi-même">
-              <img src="/assets/img/feuille-adn.png" width="256" height="256" loading="lazy" alt="">
-              <span class="feuille-info" aria-hidden="true">🎨 Art<br><em>pays merveilleux de soi-même</em></span>
-            </a>
-            <a class="feuille feuille-2" href="/thematiques/#neurosciences" aria-label="Neurosciences&nbsp;: les neurones dansent avec des pinceaux de lumière">
-              <img src="/assets/img/feuille-adn.png" width="256" height="256" loading="lazy" alt="">
-              <span class="feuille-info" aria-hidden="true">🧠 Neurosciences<br><em>les neurones dansent avec des pinceaux de lumière</em></span>
-            </a>
-            <a class="feuille feuille-3" href="/thematiques/#creation-symboles" aria-label="Création et Symboles&nbsp;: un morceau de cœur, une partie d’âme">
-              <img src="/assets/img/feuille-adn.png" width="256" height="256" loading="lazy" alt="">
-              <span class="feuille-info" aria-hidden="true">🔮 Création &amp; Symboles<br><em>un morceau de cœur, une partie d’âme</em></span>
-            </a>
-            <a class="feuille feuille-4" href="/thematiques/#spiritualite-sciences" aria-label="Spiritualité et Sciences&nbsp;: le pinceau magique et l’étincelle">
-              <img src="/assets/img/feuille-adn.png" width="256" height="256" loading="lazy" alt="">
-              <span class="feuille-info" aria-hidden="true">✨ Spiritualité &amp; Sciences<br><em>le pinceau magique et l’étincelle</em></span>
-            </a>
-            <a class="feuille feuille-5" href="/thematiques/#art-transpersonnel" aria-label="Art transpersonnel&nbsp;: la danse invisible du vivant">
-              <img src="/assets/img/feuille-adn.png" width="256" height="256" loading="lazy" alt="">
-              <span class="feuille-info" aria-hidden="true">⚛️ Art transpersonnel<br><em>la danse invisible du vivant</em></span>
-            </a>
-          </div>
-        </div>
-        <ul class="arbre-liens" aria-label="Les cinq univers">
-          <li><a href="/thematiques/#art">Art</a></li>
-          <li><a href="/thematiques/#neurosciences">Neurosciences</a></li>
-          <li><a href="/thematiques/#creation-symboles">Création &amp; Symboles</a></li>
-          <li><a href="/thematiques/#spiritualite-sciences">Spiritualité &amp; Sciences</a></li>
-          <li><a href="/thematiques/#art-transpersonnel">Art transpersonnel</a></li>
-        </ul>
+          </details>
         </div>
       </section>
 
       <section id="univers" class="section section--sombre" aria-labelledby="titre-univers">
         <div class="conteneur">
-          <h2 id="titre-univers" class="titre-section">Mes Cinq Univers</h2>
+          <h2 id="titre-univers" class="titre-section">Mes thématiques</h2>
+          <p class="accroche">L’épigénétique relie tout&nbsp;: cinq portes, un même arbre.</p>
           <ul class="cartes">
             <li class="carte">
               <img src="/assets/img/univers-art.jpg" width="292" height="376" loading="lazy" alt="Un pinceau aux traits flamboyants rose, orange et bleu, enroulé en forme de S">
@@ -223,6 +181,7 @@
               <p>L’art comme vecteur d’éveil — vibrations, transformation et conscience élargie.</p>
             </li>
           </ul>
+          <p class="hero-actions"><a class="cta" href="/thematiques/">Explorer les thématiques</a></p>
         </div>
       </section>
 
@@ -254,7 +213,8 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=4" defer></script>
+  <script src="/assets/js/main.js?v=5" defer></script>
   <script src="/assets/js/protection.js?v=1" defer></script>
+  <script src="/assets/js/carrousel.js?v=4" defer></script>
 </body>
 </html>
