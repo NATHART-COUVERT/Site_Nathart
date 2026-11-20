@@ -63,4 +63,14 @@
         .then(function () { envoyer.disabled = false; });
     });
   }
+
+  /* « Acquérir cette œuvre » : préremplit le message avec le titre de la toile (?oeuvre=...) */
+  try {
+    var oeuvre = new URLSearchParams(window.location.search).get("oeuvre");
+    var zone = document.getElementById("message");
+    if (oeuvre && zone && !zone.value) {
+      oeuvre = oeuvre.slice(0, 120);
+      zone.value = "Bonjour, je suis intéressé(e) par l’œuvre « " + oeuvre + " ». Pourriez-vous me donner plus d’informations ?";
+    }
+  } catch (e) { /* sans effet si le navigateur ne gère pas l'adresse */ }
 })();

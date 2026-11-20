@@ -96,6 +96,13 @@
       ligne.appendChild(dt); ligne.appendChild(dd); dl.appendChild(ligne);
     });
     fiche.appendChild(titre); fiche.appendChild(dl);
+    if (p.prix) {
+      var acq = document.createElement("a");
+      acq.className = "carrousel__acquerir";
+      acq.href = "/contact/?oeuvre=" + encodeURIComponent(p.titre);
+      acq.textContent = "Acquérir cette œuvre";
+      fiche.appendChild(acq);
+    }
 
     var bouton = document.createElement("button");
     bouton.type = "button";
