@@ -164,7 +164,7 @@
   var depart = null;
   piste.addEventListener("pointerdown", function (e) {
     if (e.pointerType !== "mouse" || e.button !== 0) return;
-    if (e.target.closest && e.target.closest("button")) return; /* le bouton « i » reste cliquable */
+    if (e.target.closest && e.target.closest("button, a")) return; /* le bouton « i » et le lien « Acquérir » restent cliquables */
     depart = { x: e.clientX, gauche: piste.scrollLeft };
     piste.classList.add("est-glisse");
     piste.setPointerCapture(e.pointerId);

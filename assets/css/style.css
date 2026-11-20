@@ -339,7 +339,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .carrousel__fiche dd { margin: 0; color: var(--texte); font-size: 1.1rem; }
 .carrousel__diapo.est-info .carrousel__fiche, .carrousel__info-bouton:focus-visible + .carrousel__fiche { opacity: 1; transform: none; }
 @media (hover: hover) { .carrousel__diapo:hover .carrousel__fiche { opacity: 1; transform: none; } }
-.carrousel__acquerir { display: inline-block; margin-top: 0.6rem; padding: 0.4rem 1.1rem; border: 1px solid var(--or); border-radius: 2rem; color: var(--or); font-size: 1rem; letter-spacing: 0.08em; text-decoration: none; pointer-events: none; }
+.carrousel__acquerir { display: inline-block; margin-top: 0.5rem; padding: 0.2rem 0.8rem; border: 1px solid var(--or); border-radius: 2rem; color: var(--or); font-size: 0.85rem; letter-spacing: 0.06em; text-decoration: none; pointer-events: none; }
 .carrousel__acquerir:hover, .carrousel__acquerir:focus-visible { background: var(--or); color: #070808; }
 .carrousel__diapo.est-info .carrousel__acquerir, .carrousel__info-bouton:focus-visible + .carrousel__fiche .carrousel__acquerir { pointer-events: auto; }
 @media (hover: hover) { .carrousel__diapo:hover .carrousel__acquerir { pointer-events: auto; } }
