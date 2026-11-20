@@ -51,8 +51,16 @@
       corps.appendChild(el("p", "page__vide", "Le texte de cette page arrive bientôt."));
     }
     p.appendChild(corps);
+    if (f.derniere && !large.matches) p.appendChild(logoPage("page__sceau", 24));
     p.appendChild(el("span", "page__numero", String(numero)));
     return p;
+  }
+  function logoPage(classe, taille) {
+    var logo = el("img", classe);
+    logo.src = "/assets/img/logo-page.png"; logo.alt = ""; logo.draggable = false;
+    logo.width = taille; logo.height = taille;
+    logo.style.width = taille + "px"; logo.style.height = taille + "px";
+    return logo;
   }
   function pagePhotos(f, numero) {
     var p = el("div", "page page--photos page--photos-" + Math.min(f.oeuvre.photos.length, 4));
@@ -69,9 +77,7 @@
   }
   function pagePapier() {
     var p = el("div", "page page--papier");
-    var logo = el("img", "page__ornement");
-    logo.src = "/assets/img/logo-page.png"; logo.alt = ""; logo.width = 180; logo.height = 180; logo.draggable = false;
-    p.appendChild(logo);
+    p.appendChild(logoPage("page__ornement", 38));
     return p;
   }
   function creerPage(i) {
