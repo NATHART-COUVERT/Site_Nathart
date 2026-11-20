@@ -45,7 +45,7 @@ sitemap.xml  robots.txt       Référencement
 - **Textes** : éditer directement le fichier HTML de la page concernée.
 - **Couleurs et polices** : variables en tête de `assets/css/style.css` (`--or`, `--fond`, …).
 - **En-tête, menu et pied de page** sont répétés dans chaque page : une modification du menu doit être reportée dans tous les fichiers `index.html`.
-- Prévisualiser en local : **double-cliquer sur `Apercu-local.bat`** (Windows, rien à installer) : le site s'ouvre sur `http://localhost:8123/`. Ne pas ouvrir `index.html` directement : les liens sont absolus (`/art/`), le rendu serait cassé hors d'un serveur. Alternatives : extension *Live Server* de VS Code, ou `npx vercel dev`.
+- Prévisualiser en local : **double-cliquer sur `Apercu-local.bat`** (Windows, rien à installer) : le site s'ouvre sur `http://localhost:8123/`. Ne pas ouvrir `index.html` directement : les liens sont absolus (`/thematiques/`), le rendu serait cassé hors d'un serveur. Alternatives : extension *Live Server* de VS Code, ou `npx vercel dev`.
 
 ## Mode « site privé » (en cours)
 

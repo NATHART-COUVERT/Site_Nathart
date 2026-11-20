@@ -2,6 +2,18 @@
 (function () {
   "use strict";
 
+  /* ----- Thématiques : ouvre le thème visé par l'adresse (#art, #neurosciences…) ----- */
+  function ouvrirTheme() {
+    var id = window.location.hash.slice(1);
+    var cible = id ? document.getElementById(id) : null;
+    if (cible && cible.tagName === "DETAILS") {
+      cible.open = true;
+      cible.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+  window.addEventListener("hashchange", ouvrirTheme);
+  ouvrirTheme();
+
   /* ----- Menu mobile ----- */
   var nav = document.querySelector(".nav");
   var bouton = document.querySelector(".nav__bouton");

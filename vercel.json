@@ -3,6 +3,10 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": true,
+  "redirects": [
+    { "source": "/:p(art|neurosciences|creation-symboles|spiritualite-sciences|art-transpersonnel|epigenetique)", "destination": "/thematiques/#:p", "permanent": false },
+    { "source": "/:p(art|neurosciences|creation-symboles|spiritualite-sciences|art-transpersonnel|epigenetique)/", "destination": "/thematiques/#:p", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/(.*)",

@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://nathart.vercel.app/</loc></url>
-  <url><loc>https://nathart.vercel.app/art/</loc></url>
-  <url><loc>https://nathart.vercel.app/neurosciences/</loc></url>
-  <url><loc>https://nathart.vercel.app/creation-symboles/</loc></url>
-  <url><loc>https://nathart.vercel.app/spiritualite-sciences/</loc></url>
-  <url><loc>https://nathart.vercel.app/art-transpersonnel/</loc></url>
-  <url><loc>https://nathart.vercel.app/epigenetique/</loc></url>
+  <url><loc>https://nathart.vercel.app/thematiques/</loc></url>
   <url><loc>https://nathart.vercel.app/galerie/</loc></url>
   <url><loc>https://nathart.vercel.app/album/</loc></url>
   <url><loc>https://nathart.vercel.app/lectures/</loc></url>

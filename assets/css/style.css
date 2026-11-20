@@ -96,7 +96,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
   padding: 1rem 0 0.25rem;
   text-align: center;
 }
-.entete__logo img { width: 197px; border-radius: 30px; }
+.entete__logo img { width: 197px; mix-blend-mode: lighten; }
 .entete__titre {
   font-family: var(--police-titre); color: var(--or);
   font-size: clamp(2.6rem, 6vw, 3.4rem); line-height: 1.1; margin: 0; text-decoration: none; display: block;
@@ -170,7 +170,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .accueil-fond > * { position: relative; }
 @media (max-width: 800px) { .accueil-fond { background-image: url("/assets/img/fond-accueil-mobile.jpg"); } }
 @media (min-width: 801px) { .accueil-fond { background-image: url("/assets/img/fond-accueil.jpg"); } }
-@media (min-width: 1025px) and (hover: hover) { .accueil-fond { background-attachment: fixed; } }
+@media (min-width: 1025px) and (hover: hover) { .accueil-fond { background-attachment: fixed; background-size: contain; background-position: center top; } }
 
 /* Pages « univers » : visuel de l'univers fondu dans le noir (mode soft-light de Divi) */
 .fond-univers {
@@ -243,7 +243,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 /* ---------- Cartes « Mes Cinq Univers » ---------- */
 .cartes { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem 2rem; list-style: none; padding: 0; margin: 2rem 0 0; }
 .carte { position: relative; width: min(100%, 17rem); text-align: center; }
-.carte img { margin: 0 auto 0.75rem; transition: transform 0.4s ease; }
+.carte img { margin: 0 auto 0.75rem; mix-blend-mode: lighten; transition: transform 0.4s ease; }
 .carte:hover img { transform: scale(1.04); }
 .carte h3 { font-size: 1.5rem; margin-bottom: 0.4rem; }
 .carte h3 a { color: var(--or); text-decoration: none; }
@@ -578,7 +578,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .pied { background: var(--fond); border-top: 1px solid rgba(239, 207, 130, 0.25); padding: 2.5rem 0 1.5rem; }
 .pied__grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: start; text-align: center; }
 .pied__titre { font-family: var(--police-titre); color: var(--or); font-size: 1.9rem; margin: 0 0 0.6rem; line-height: 1.2; }
-.pied__logo img { width: 6.5rem; margin: 0.5rem auto 0; border-radius: 6px; }
+.pied__logo img { width: 6.5rem; margin: 0.5rem auto 0; mix-blend-mode: lighten; }
 .pied__reseaux { list-style: none; display: flex; justify-content: center; gap: 1.5rem; padding: 0; margin: 0; }
 .pied__reseaux a { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; border: 1px solid rgba(239, 207, 130, 0.5); color: var(--or); transition: background 0.3s, color 0.3s; }
 .pied__reseaux a:hover, .pied__reseaux a:focus-visible { background: var(--or); color: var(--fond); }
@@ -600,3 +600,22 @@ img, video { -webkit-user-drag: none; -webkit-touch-callout: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ===== Page Thématiques : arbre + thèmes repliables ===== */
+.arbre-indice { margin: 1.2rem 0 0.4rem; font-style: italic; color: var(--or-clair); font-size: 1.2rem; }
+.arbre-indice::before { content: "\2766  "; color: var(--or); }
+.colonne--arbre { width: min(100% - 1rem, 62rem); }
+.arbre-liens a { display: inline-block; padding: 0.35rem 1.1rem; border: 1px solid var(--or); border-radius: 2rem; color: var(--or); text-decoration: none; font-size: 1.05rem; letter-spacing: 0.04em; transition: background 0.3s, color 0.3s; }
+.arbre-liens a:hover, .arbre-liens a:focus-visible { background: var(--or); color: #111; }
+.colonne--themes { text-align: left; }
+.theme { margin: 0 0 1rem; border: 1px solid rgba(239, 207, 130, 0.45); background: rgba(239, 207, 130, 0.05); scroll-margin-top: 5rem; }
+.theme[open] { background: rgba(239, 207, 130, 0.08); border-color: var(--or); }
+.theme > summary { cursor: pointer; list-style: none; padding: 1rem 3rem 1rem 1.3rem; position: relative; display: flex; flex-direction: column; gap: 0.2rem; }
+.theme > summary::-webkit-details-marker { display: none; }
+.theme > summary::after { content: "+"; position: absolute; right: 1.2rem; top: 50%; transform: translateY(-50%); font-size: 1.8rem; color: var(--or); line-height: 1; }
+.theme[open] > summary::after { content: "\2212"; }
+.theme > summary:hover, .theme > summary:focus-visible { background: rgba(239, 207, 130, 0.1); }
+.theme__titre { color: var(--or); font-family: var(--police-titre); font-size: clamp(1.9rem, 5vw, 2.4rem); font-style: italic; line-height: 1.15; }
+.theme__sous { color: var(--texte-doux); font-style: italic; font-size: 1.15rem; }
+.theme__corps { padding: 0.5rem 1.3rem 1.5rem; text-align: center; }
+.theme__corps .titre-section { margin-top: 1.5rem; }
