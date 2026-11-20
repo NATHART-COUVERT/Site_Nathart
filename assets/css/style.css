@@ -491,7 +491,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .page__photo img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; -webkit-user-drag: none; }
 .page__date { position: absolute; bottom: 3.5%; left: 0; right: 0; text-align: center; font-size: 0.9rem; font-style: italic; color: #8a7458; }
 .page--papier { align-items: center; justify-content: center; }
-.page__ornement { font-size: 2.2rem; color: #b79a62; }
+.page__ornement { width: 34%; height: auto; opacity: 0.9; border-radius: 50%; box-shadow: 0 2px 8px rgba(60, 40, 10, 0.25); }
 .livre__compteur { margin: 0.2rem 0 0; font-size: 1rem; color: var(--texte-doux); text-align: center; }
 .livre-scene:not(.est-pret) .volume__bouton { display: none; }
 

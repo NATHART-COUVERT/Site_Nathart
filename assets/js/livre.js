@@ -69,7 +69,9 @@
   }
   function pagePapier() {
     var p = el("div", "page page--papier");
-    p.appendChild(el("span", "page__ornement", "❦"));
+    var logo = el("img", "page__ornement");
+    logo.src = "/assets/img/logo-page.png"; logo.alt = ""; logo.width = 180; logo.height = 180; logo.draggable = false;
+    p.appendChild(logo);
     return p;
   }
   function creerPage(i) {
