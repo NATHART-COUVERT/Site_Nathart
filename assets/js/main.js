@@ -14,19 +14,25 @@
   window.addEventListener("hashchange", ouvrirTheme);
   ouvrirTheme();
 
-  /* ----- Parallaxe de l'accueil (grand écran seulement) : l'image défile deux fois plus lentement que la page ----- */
+  /* ----- Parallaxe de l'accueil (ordinateur) : l'image defile deux fois plus lentement que la page et passe derriere toutes les sections ----- */
   var zoneParallaxe = document.querySelector(".parallaxe");
-  if (zoneParallaxe && window.matchMedia && window.matchMedia("(min-width: 1025px) and (hover: hover)").matches &&
+  if (zoneParallaxe && window.matchMedia && window.matchMedia("(hover: hover)").matches &&
       !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    var attente = false;
+    zoneParallaxe.classList.add("parallaxe--actif");
     var majParallaxe = function () {
-      attente = false;
-      var decalage = Math.max(0, -zoneParallaxe.getBoundingClientRect().top);
-      zoneParallaxe.style.setProperty("--py", Math.round(decalage * 0.5) + "px");
+      var haut = zoneParallaxe.getBoundingClientRect().top;
+      zoneParallaxe.style.setProperty("--py", Math.round(Math.max(0, -haut) * 0.5) + "px");
+    };
+    var majTaille = function () {
+      /* hauteur d'image qui couvre toute la zone jusqu'au bout du defilement, sans depasser la largeur de la fenetre */
+      var h = (zoneParallaxe.offsetHeight + window.innerHeight) / 2;
+      zoneParallaxe.style.setProperty("--bgh", Math.round(Math.min(h, window.innerWidth / 0.652)) + "px");
+      majParallaxe();
     };
     window.addEventListener("scroll", majParallaxe, { passive: true });
-    window.addEventListener("resize", majParallaxe);
-    majParallaxe();
+    window.addEventListener("resize", majTaille);
+    window.addEventListener("load", majTaille);
+    majTaille();
   }
 
   /* ----- Menu mobile ----- */

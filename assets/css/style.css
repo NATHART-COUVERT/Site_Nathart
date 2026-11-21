@@ -170,17 +170,16 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .accueil-fond > * { position: relative; }
 @media (max-width: 800px) { .accueil-fond { background-image: url("/assets/img/fond-accueil-mobile.jpg"); } }
 @media (min-width: 801px) { .accueil-fond { background-image: url("/assets/img/fond-accueil.jpg"); } }
-@media (min-width: 1025px) and (hover: hover) {
-  .accueil-fond { background-attachment: fixed; background-size: contain; background-position: center top; }
-  .parallaxe { position: relative; background: var(--fond) url("/assets/img/fond-accueil.jpg") no-repeat; background-size: auto 165vh; background-position: center var(--py, 0px); }
-  .parallaxe::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); pointer-events: none; }
-  .parallaxe > * { position: relative; }
-  .parallaxe .accueil-fond { background: none; min-height: 105vh; }
-  .parallaxe .accueil-fond::before { display: none; }
-  .accueil-fond > .section { min-height: inherit; display: flex; flex-direction: column; justify-content: flex-start; }
-  .accueil-fond .colonne { display: flex; flex-direction: column; gap: 26vh; }
-}
-@media (prefers-reduced-motion: reduce) { .parallaxe { background-position: center top; } }
+@media (min-width: 1025px) and (hover: hover) { .accueil-fond { background-attachment: fixed; background-size: contain; background-position: center top; } }
+/* Parallaxe de l'accueil : activee par le script (.parallaxe--actif) ; l'image passe derriere toutes les sections */
+.parallaxe--actif { position: relative; background: var(--fond) url("/assets/img/fond-accueil.jpg") no-repeat; background-size: auto var(--bgh, 230vh); background-position: center var(--py, 0px); }
+.parallaxe--actif::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); pointer-events: none; }
+.parallaxe--actif > * { position: relative; }
+.parallaxe--actif .accueil-fond { background: none; min-height: 105vh; }
+.parallaxe--actif .accueil-fond::before { display: none; }
+.parallaxe--actif .section--sombre { background: transparent; }
+.parallaxe--actif .accueil-fond > .section { min-height: inherit; display: flex; flex-direction: column; justify-content: flex-start; }
+.parallaxe--actif .accueil-fond .colonne { display: flex; flex-direction: column; gap: 32vh; }
 
 /* Pages « univers » : visuel de l'univers fondu dans le noir (mode soft-light de Divi) */
 .fond-univers {
