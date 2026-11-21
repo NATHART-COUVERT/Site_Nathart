@@ -14,6 +14,23 @@
   window.addEventListener("hashchange", ouvrirTheme);
   ouvrirTheme();
 
+  /* ----- Parallaxe de l'accueil (grand écran seulement) : l'image défile deux fois plus lentement que la page ----- */
+  var zone = document.querySelector(".parallaxe");
+  if (zone && window.matchMedia && window.matchMedia("(min-width: 1025px) and (hover: hover)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var attente = false;
+    var majParallaxe = function () {
+      attente = false;
+      var decalage = Math.max(0, -zone.getBoundingClientRect().top);
+      zone.style.setProperty("--py", Math.round(decalage * 0.5) + "px");
+    };
+    window.addEventListener("scroll", function () {
+      if (!attente) { attente = true; window.requestAnimationFrame(majParallaxe); }
+    }, { passive: true });
+    window.addEventListener("resize", majParallaxe);
+    majParallaxe();
+  }
+
   /* ----- Menu mobile ----- */
   var nav = document.querySelector(".nav");
   var bouton = document.querySelector(".nav__bouton");

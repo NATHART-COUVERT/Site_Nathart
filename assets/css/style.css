@@ -170,7 +170,17 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .accueil-fond > * { position: relative; }
 @media (max-width: 800px) { .accueil-fond { background-image: url("/assets/img/fond-accueil-mobile.jpg"); } }
 @media (min-width: 801px) { .accueil-fond { background-image: url("/assets/img/fond-accueil.jpg"); } }
-@media (min-width: 1025px) and (hover: hover) { .accueil-fond { min-height: 175vh; background-size: auto 100%; background-position: center top; } .accueil-fond > .section { min-height: inherit; display: flex; flex-direction: column; justify-content: flex-start; } .accueil-fond .colonne { display: flex; flex-direction: column; gap: 38vh; } }
+@media (min-width: 1025px) and (hover: hover) {
+  .accueil-fond { background-attachment: fixed; background-size: contain; background-position: center top; }
+  .parallaxe { position: relative; background: var(--fond) url("/assets/img/fond-accueil.jpg") no-repeat; background-size: auto 165vh; background-position: center var(--py, 0px); }
+  .parallaxe::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); pointer-events: none; }
+  .parallaxe > * { position: relative; }
+  .parallaxe .accueil-fond { background: none; min-height: 105vh; }
+  .parallaxe .accueil-fond::before { display: none; }
+  .accueil-fond > .section { min-height: inherit; display: flex; flex-direction: column; justify-content: flex-start; }
+  .accueil-fond .colonne { display: flex; flex-direction: column; gap: 26vh; }
+}
+@media (prefers-reduced-motion: reduce) { .parallaxe { background-position: center top; } }
 
 /* Pages « univers » : visuel de l'univers fondu dans le noir (mode soft-light de Divi) */
 .fond-univers {
@@ -196,7 +206,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 }
 .titre-hero {
   font-family: var(--police-titre); color: var(--or); text-align: center;
-  font-size: clamp(4.5rem, 16vw, 6.25rem); line-height: 1.1; font-style: italic;
+  font-size: clamp(4.5rem, 16vw, 6.25rem); line-height: 1.1; font-style: italic; margin-bottom: 2.4rem;
 }
 .titre-apropos { font-family: var(--police-titre); color: var(--or); font-size: clamp(2.6rem, 8vw, 3.2rem); font-style: italic; text-align: center; }
 .titre-section { color: var(--or); font-size: clamp(2rem, 5vw, 2.25rem); text-align: center; margin: 2.5rem 0 1rem; }

@@ -149,7 +149,7 @@
     }
     function programmer() {
       window.clearTimeout(minuteur);
-      if (reduit || survol || focus || hors || drag) return;
+      if (reduit || focus || hors || drag) return;
       minuteur = window.setTimeout(function () { aller(modulo(courante + 1, 6)); }, 4800);
     }
 
@@ -213,7 +213,7 @@
     scene.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && photos.length) { e.preventDefault(); ouvrirZoom(photos[courante % photos.length], apresZoom); } });
     racine.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { survol = true; window.clearTimeout(minuteur); } });
     racine.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") { survol = false; programmer(); } });
-    racine.addEventListener("focusin", function () { focus = true; window.clearTimeout(minuteur); });
+    racine.addEventListener("focusin", function (e) { focus = !!(e.target.matches && e.target.matches(":focus-visible")); window.clearTimeout(minuteur); });
     racine.addEventListener("focusout", function () { focus = false; programmer(); });
 
     surveiller(racine, function () {
@@ -253,7 +253,7 @@
       panneaux.forEach(function (el, i) { el.setAttribute("aria-hidden", i === f ? "false" : "true"); });
     }
     function arreter() { if (anim) { anim.stop(); anim = null; } }
-    function pause() { return survol || focus || drag || anim || performance.now() < reprise; }
+    function pause() { return focus || drag || anim || performance.now() < reprise; }
 
     function image(t) {
       if (!boucle) return;
@@ -339,7 +339,7 @@
     scene.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && photos.length) { e.preventDefault(); ouvrirZoom(photos[courante], apresZoom); } });
     racine.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") survol = true; });
     racine.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") { survol = false; reprise = performance.now() + 800; } });
-    racine.addEventListener("focusin", function () { focus = true; });
+    racine.addEventListener("focusin", function (e) { focus = !!(e.target.matches && e.target.matches(":focus-visible")); });
     racine.addEventListener("focusout", function () { focus = false; reprise = performance.now() + 800; });
 
     surveiller(racine, function () {
