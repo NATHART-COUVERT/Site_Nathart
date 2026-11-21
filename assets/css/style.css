@@ -170,7 +170,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .accueil-fond > * { position: relative; }
 @media (max-width: 800px) { .accueil-fond { background-image: url("/assets/img/fond-accueil-mobile.jpg"); } }
 @media (min-width: 801px) { .accueil-fond { background-image: url("/assets/img/fond-accueil.jpg"); } }
-@media (min-width: 1025px) and (hover: hover) { .accueil-fond { background-attachment: fixed; background-size: contain; background-position: center top; } }
+@media (min-width: 1025px) and (hover: hover) { .accueil-fond { min-height: 145vh; background-size: auto 100%; background-position: center top; } }
 
 /* Pages « univers » : visuel de l'univers fondu dans le noir (mode soft-light de Divi) */
 .fond-univers {
@@ -634,3 +634,13 @@ img, video { -webkit-user-drag: none; -webkit-touch-callout: none; }
 .feuille-2::before { animation-delay: 0.6s; } .feuille-3::before { animation-delay: 1.2s; } .feuille-4::before { animation-delay: 1.8s; } .feuille-5::before { animation-delay: 2.4s; }
 @keyframes lueur { 0%, 100% { opacity: 0.1; transform: scale(0.85); } 50% { opacity: 0.95; transform: scale(1.1); } }
 @media (prefers-reduced-motion: reduce) { .feuille::before { animation: none; opacity: 0.4; } }
+/* ===== Agrandissement d'une oeuvre (cube, anneau) ===== */
+.volume__astuce { margin: 0.3rem 0 0; text-align: center; font-style: italic; font-size: 1.05rem; color: var(--or-clair); }
+.volume__scene { cursor: zoom-in; }
+.volume__scene.est-glisse { cursor: grabbing; }
+body.zoom-ouvert { overflow: hidden; }
+.zoom { position: fixed; inset: 0; z-index: 1000; background: rgba(0, 0, 0, 0.92); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.8rem; padding: 3.5rem 1rem 1.5rem; cursor: zoom-out; }
+.zoom img { max-width: 100%; max-height: calc(100vh - 8rem); width: auto; height: auto; object-fit: contain; border: 1px solid rgba(239, 207, 130, 0.5); }
+.zoom__legende { margin: 0; color: var(--or); font-size: 1.3rem; font-style: italic; text-align: center; }
+.zoom__fermer { position: absolute; top: 0.8rem; right: 1rem; width: 2.8rem; height: 2.8rem; border-radius: 50%; border: 2px solid var(--or); background: rgba(18, 18, 18, 0.8); color: var(--or); font-size: 2rem; line-height: 1; cursor: pointer; }
+.zoom__fermer:hover, .zoom__fermer:focus-visible { background: var(--or); color: #111; }
