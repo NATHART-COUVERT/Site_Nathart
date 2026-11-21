@@ -211,9 +211,9 @@
       ouvrirZoom(photos[(f >= 0 ? f : courante) % photos.length], apresZoom);
     });
     scene.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && photos.length) { e.preventDefault(); ouvrirZoom(photos[courante % photos.length], apresZoom); } });
-    racine.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { survol = true; window.clearTimeout(minuteur); } });
-    racine.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") { survol = false; programmer(); } });
-    racine.addEventListener("focusin", function (e) { focus = !!(e.target.matches && e.target.matches(":focus-visible")); window.clearTimeout(minuteur); });
+    
+    
+    racine.addEventListener("focusin", function (e) { focus = !!(e.target.matches && e.target.matches(":focus-visible")); if (focus) window.clearTimeout(minuteur); });
     racine.addEventListener("focusout", function () { focus = false; programmer(); });
 
     surveiller(racine, function () {
