@@ -170,7 +170,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.15; }
 .accueil-fond > * { position: relative; }
 @media (max-width: 800px) { .accueil-fond { background-image: url("/assets/img/fond-accueil-mobile.jpg"); } }
 @media (min-width: 801px) { .accueil-fond { background-image: url("/assets/img/fond-accueil.jpg"); } }
-@media (min-width: 1025px) and (hover: hover) { .accueil-fond { min-height: 145vh; background-size: auto 100%; background-position: center top; } }
+@media (min-width: 1025px) and (hover: hover) { .accueil-fond { min-height: 175vh; background-size: auto 100%; background-position: center top; } .accueil-fond > .section { min-height: inherit; display: flex; flex-direction: column; justify-content: flex-start; } .accueil-fond .colonne { display: flex; flex-direction: column; gap: 38vh; } }
 
 /* Pages « univers » : visuel de l'univers fondu dans le noir (mode soft-light de Divi) */
 .fond-univers {

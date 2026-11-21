@@ -60,7 +60,7 @@
   }
 
   /* ---------- agrandissement d'une œuvre au clic (fenêtre plein écran) ---------- */
-  function ouvrirZoom(p) {
+  function ouvrirZoom(p, auRetour) {
     if (!p) return;
     var avant = document.activeElement;
     var fond = document.createElement("div");
@@ -79,7 +79,8 @@
       document.removeEventListener("keydown", touche);
       document.body.classList.remove("zoom-ouvert");
       if (fond.parentNode) fond.parentNode.removeChild(fond);
-      if (avant && avant.focus) { try { avant.focus(); } catch (x) { /* ignoré */ } }
+      if (avant && avant.blur) { try { avant.blur(); } catch (x) { /* ignoré */ } }
+      if (auRetour) auRetour();
     }
     function touche(e) { if (e.key === "Escape") clore(); }
     fond.addEventListener("click", clore);
@@ -89,8 +90,8 @@
     fermer.focus();
   }
   /* un « clic » = appui court, presque sans déplacement (sinon c'est un glissé pour faire tourner) */
-  function estClic(depart, e) {
-    return depart && Math.abs(e.clientX - depart.x) < 6 && Math.abs(e.clientY - depart.y) < 6 && performance.now() - depart.t < 600;
+  function estClic(depart) {
+    return depart && depart.max < 12 && performance.now() - depart.t < 900;
   }
   function ajouterAstuce(racine) {
     var cmd = racine.querySelector(".volume__commandes");
@@ -181,12 +182,13 @@
       arreter(); window.clearTimeout(minuteur);
       drag = { x: e.clientX, y: e.clientY, rx: rx, ry: ry, tactile: e.pointerType !== "mouse" };
       var cf = e.target.closest ? e.target.closest(".cube__face") : null;
-      appui = { x: e.clientX, y: e.clientY, t: performance.now(), face: cf ? faces.indexOf(cf) : -1 };
+      appui = { x: e.clientX, y: e.clientY, t: performance.now(), max: 0, face: cf ? faces.indexOf(cf) : -1 };
       scene.classList.add("est-glisse");
       try { scene.setPointerCapture(e.pointerId); } catch (x) { /* ignoré */ }
     });
     scene.addEventListener("pointermove", function (e) {
       if (!drag) return;
+      if (appui) appui.max = Math.max(appui.max, Math.abs(e.clientX - appui.x), Math.abs(e.clientY - appui.y));
       ry = drag.ry + (e.clientX - drag.x) * 0.45;
       if (!drag.tactile) rx = drag.rx - (e.clientY - drag.y) * 0.45; /* au doigt : le vertical fait défiler la page */
       appliquer(); majFace();
@@ -196,13 +198,19 @@
       drag = null; scene.classList.remove("est-glisse");
       aller(faceDevant()); /* se cale sur la face la plus proche */
     }
-    scene.addEventListener("pointerup", function (e) {
-      var clic = estClic(appui, e), f = appui ? appui.face : -1;
-      lacher();
-      if (clic) ouvrirZoom(photos[(f >= 0 ? f : courante) % photos.length]);
-    });
+    function apresZoom() { survol = false; focus = false; programmer2(1200); }
+    function programmer2(delai) {
+      window.clearTimeout(minuteur);
+      minuteur = window.setTimeout(function () { if (!hors && !drag) aller(modulo(courante + 1, 6)); }, delai);
+    }
+    scene.addEventListener("pointerup", lacher);
     scene.addEventListener("pointercancel", lacher);
-    scene.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ouvrirZoom(photos[courante % photos.length]); } });
+    scene.addEventListener("click", function () {
+      if (!estClic(appui) || !photos.length) return;
+      var f = appui.face; appui = null;
+      ouvrirZoom(photos[(f >= 0 ? f : courante) % photos.length], apresZoom);
+    });
+    scene.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && photos.length) { e.preventDefault(); ouvrirZoom(photos[courante % photos.length], apresZoom); } });
     racine.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { survol = true; window.clearTimeout(minuteur); } });
     racine.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") { survol = false; programmer(); } });
     racine.addEventListener("focusin", function () { focus = true; window.clearTimeout(minuteur); });
@@ -300,13 +308,14 @@
       arreter(); inertie = 0;
       drag = { x: e.clientX, angle: angle };
       var pn = e.target.closest ? e.target.closest(".anneau__panneau") : null;
-      appui = { x: e.clientX, y: e.clientY, t: performance.now(), face: pn ? panneaux.indexOf(pn) : -1 };
+      appui = { x: e.clientX, y: e.clientY, t: performance.now(), max: 0, face: pn ? panneaux.indexOf(pn) : -1 };
       dernierX = e.clientX; dernierT = performance.now(); vitesseDrag = 0;
       scene.classList.add("est-glisse");
       try { scene.setPointerCapture(e.pointerId); } catch (x) { /* ignoré */ }
     });
     scene.addEventListener("pointermove", function (e) {
       if (!drag) return;
+      if (appui) appui.max = Math.max(appui.max, Math.abs(e.clientX - appui.x), Math.abs(e.clientY - appui.y));
       angle = drag.angle + (e.clientX - drag.x) * 0.3;
       var t = performance.now();
       if (t > dernierT) vitesseDrag = ((e.clientX - dernierX) * 0.3) / ((t - dernierT) / 1000);
@@ -319,13 +328,15 @@
       inertie = Math.max(-240, Math.min(240, vitesseDrag));
       reprise = performance.now() + 2500;
     }
-    scene.addEventListener("pointerup", function (e) {
-      var clic = estClic(appui, e), f = appui ? appui.face : -1;
-      lacher();
-      if (clic) { inertie = 0; ouvrirZoom(photos[f >= 0 ? f : courante]); }
-    });
+    function apresZoom() { survol = false; focus = false; inertie = 0; reprise = performance.now() + 700; }
+    scene.addEventListener("pointerup", lacher);
     scene.addEventListener("pointercancel", lacher);
-    scene.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ouvrirZoom(photos[courante]); } });
+    scene.addEventListener("click", function () {
+      if (!estClic(appui) || !photos.length) return;
+      var f = appui.face; appui = null; inertie = 0;
+      ouvrirZoom(photos[f >= 0 ? f : courante], apresZoom);
+    });
+    scene.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && photos.length) { e.preventDefault(); ouvrirZoom(photos[courante], apresZoom); } });
     racine.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") survol = true; });
     racine.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") { survol = false; reprise = performance.now() + 800; } });
     racine.addEventListener("focusin", function () { focus = true; });
