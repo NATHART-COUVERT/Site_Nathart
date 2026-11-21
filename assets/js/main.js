@@ -24,9 +24,7 @@
       var decalage = Math.max(0, -zoneParallaxe.getBoundingClientRect().top);
       zoneParallaxe.style.setProperty("--py", Math.round(decalage * 0.5) + "px");
     };
-    window.addEventListener("scroll", function () {
-      if (!attente) { attente = true; window.requestAnimationFrame(majParallaxe); }
-    }, { passive: true });
+    window.addEventListener("scroll", majParallaxe, { passive: true });
     window.addEventListener("resize", majParallaxe);
     majParallaxe();
   }
